@@ -20,6 +20,8 @@
 </style>
 <?php
 
+echo "test";
+
 require_once 'header.php';
 //require_once 'home.php';
 require_once  'classes/database/class.databaseconn.php';
