@@ -11,6 +11,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
+<!-- Bootstrap CSS CDN -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<!-- Our Custom CSS -->
+<link rel="stylesheet" href="style/style.css">
+
 <!-- Blau-Farbton logo 46c4f9 -->
 
 <style>
@@ -46,6 +52,12 @@ if(isset($_SESSION['user']) && !empty($_SESSION['user'])) {
         switch($_GET['action']) {
             case 1:
                 require_once '../tasklist/files/meta.login.php';
+
+            case 1000:
+                require '../tasklist/files/src.createaccount.php';
+                break;
+
+
         }
     } else {
         require_once '../tasklist/files/src.home.php';
@@ -62,3 +74,4 @@ if(isset($_SESSION['user']) && !empty($_SESSION['user'])) {
     }
 }
 ?>
+

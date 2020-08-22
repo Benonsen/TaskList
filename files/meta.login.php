@@ -11,7 +11,7 @@ if(isset($_POST['username']) && isset($_POST['password'])) {
     $credentials = userdao::doLogin($_POST['username'], $_POST['password']);
 
 
-    if(!empty($credentials)) {
+    if(!empty($credentials && $credentials != 1)) {
 
         error_log('sesssss');
 
@@ -21,6 +21,10 @@ if(isset($_POST['username']) && isset($_POST['password'])) {
 
         Header('Location: '.$_SERVER['PHP_SELF']);
     }
+    else if($credentials == 1){
+        echo "aaa";
+    }
+
 }
 
 if(isset($_POST['logout'])) {
