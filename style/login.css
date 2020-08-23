@@ -3,6 +3,10 @@
     --input-padding-y: .75rem;
 }
 
+html{
+    background: #000000
+}
+
 body {
     background: #efefef;
 //background: linear-gradient(to right, #defeff, #a3fcff);
