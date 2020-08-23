@@ -3,7 +3,7 @@ require_once '../tasklist/header.php';
 
 ?>
 
-
+<link href="../tasklist/css/sb-admin-2.min.css" rel="stylesheet">
 <style>
     /*
 *
@@ -98,6 +98,12 @@ require_once '../tasklist/header.php';
     border: 0 solid #f6f6f6;
     border-radius: .25rem;
 }
+
+
+    html {
+        background: #d6d6d6;
+        color: #d6d6d6;
+    }
 
 
 </style>

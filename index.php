@@ -14,10 +14,10 @@
 <!-- Bootstrap CSS CDN -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <!-- Our Custom CSS -->
-<link rel="stylesheet" href="style/style.css">
+<link rel="stylesheet" href="../tasklist/style/login.css">
 
 <!-- Blau-Farbton logo 46c4f9 -->
-<link href="../tasklist/css/sb-admin-2.min.css" rel="stylesheet">
+
 <body>
 
 </body>
