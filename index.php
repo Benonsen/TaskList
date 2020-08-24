@@ -18,9 +18,6 @@
 
 <!-- Blau-Farbton logo 46c4f9 -->
 
-<body>
-
-</body>
 <style>
     body{
         background: #efefef;
