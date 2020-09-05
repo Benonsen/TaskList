@@ -28,14 +28,26 @@ Class UserDAO
             return 1;
         }
     }
-
-    public static function createUser($username, $password, $email)
-    {
+     
+    public static function doSignUP($username, $email, $password){
         $db = new MySQLDatabase();
+        
+        
+        $stmt = $db->executeQuery('SELECT username, email FROM user WHERE username=? or email=?', 'ss', $username, $username);
+        $stmt->bind_result($rs_id, $rs_name);
 
-        $stmt = $db->executeQuery('INSERT INTO user (username, password, email, ismaster, create_date) VALUES (?, ?, ?, ?, ?)', 'sssii', $username, $password, $email, 0, timne());
+        if ($stmt->fetch()) {
 
-        return $db->getLastInsertID();
+           
+        }
+        else {
+            $stmt = $db->executeQuery('INSERT INTO user (username, password, email, ismaster, create_date) VALUES (?, ?, ?, ?, ?)', 'ssssi', $username, sha1($password), $email, 0, time());
+        
+            return $db->getLastInsertID();
+        }
+        
+        
+        
     }
 }
 ?>

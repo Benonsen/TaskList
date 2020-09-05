@@ -31,21 +31,7 @@ require_once '../tasklist/classes/database/class.STDMySQLDatabase.php';
 
 
 session_start();
-/*
-require_once 'header.php';
-//require_once 'home.php';
-$conn = OpenCon();
-if($conn){
-    //echo "DB Conn works";
-}
-else{
-    echo "ERROR";
-}
 
-CloseCon($conn);
-
-
-*/
 if(isset($_SESSION['user']) && !empty($_SESSION['user'])) {
     if(isset($_GET['action'])) {
         switch($_GET['action']) {
@@ -69,6 +55,10 @@ if(isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                 break;
             case 'SignUpForm':
                 require_once '../tasklist/files/src.createaccount.php';
+                break;
+            case 'doSignUp':
+                require_once '../tasklist/files/meta.signup.php';
+                break;
         }
     } else {
         require_once '../tasklist/files/src.login.php';

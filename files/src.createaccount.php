@@ -138,7 +138,10 @@
 
 
 </style>
-<div id="appendsignup"></div>
+<script>
+    window.alert("sdfjh");
+</script>
+
 <div class="container" id="signup-form">
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -148,24 +151,20 @@
                     <form class="form-signin">
                         <div class="form-label-group">
                             <input type="text" id="username" class="form-control" placeholder="username"  autofocus autocomplete="off">
-                            <label for="username">Email address or username</label>
-
+                            <label for="username">Username</label>
                         </div>
-
+                        <div class="form-label-group">
+                            <input type="email" id="email" class="form-control" placeholder="email"  autofocus autocomplete="off">
+                            <label for="email">Email address</label>
+                        </div>
+                        
                         <div class="form-label-group">
                             <input type="password" id="password" class="form-control" placeholder="password" >
                             <label for="password">Password</label>
-
                         </div>
 
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="button" onClick="doSignUp()" style="margin-top:3%;">Create a new account</button>
 
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="button" onClick="doLogin()">Log In</button>
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="button" onClick="signup()" style="margin-top:3%;">Create a new account</button>
-                        <!--
-                        <a  href="files/signup.php">
-                            <button class="btn btn-lg btn-primary btn-block text-uppercase" style="margin-top: 3%">Sign In</button>
-                        </a>
-                        -->
 
                     </form>
                 </div>
@@ -183,15 +182,18 @@
             doLogin();
         }
     });
-    function doLogin(){
+    function doSignUp(){
         username = document.getElementById('username').value;
+        email = document.getElementById('email').value;
         password = document.getElementById('password').value;
+         
 
         $.ajax({
             type: 'POST',
-            url: '../tasklist/index.php?action=doLogin',
+            url: '../tasklist/index.php?action=doSignUp',
             data: {
                 username: username,
+                email: email,
                 password: password
             },
             beforeSend:function(a){
@@ -205,21 +207,5 @@
             }
         });
     }
-    function signup(){
-        $.ajax({
-            type: 'POST',
-            url: '../tasklist/index.php?action=doSignUp',
-            beforeSend:function(a){
-                a.overrideMimeType('text/html; charset=UTF-8');
-            },
-            success:function(data){
-                $('#appendsignup').empty();
-                $('#appendsignup').append(data);
-                console.log("ajax works");
-            },
-            error:function(){
-                location.reload();
-            }
-        });
-    }
+ 
 </script>

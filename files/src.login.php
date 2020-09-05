@@ -138,7 +138,7 @@
 
 
 </style>
-<div id="appendsignup"></div>
+<div id="appendsignup">
 <div class="container" id="login-form">
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -160,7 +160,7 @@
 
 
                         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="button" onClick="doLogin()">Log In</button>
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="button" onClick="signup()" style="margin-top:3%;">Create a new account</button>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="button" onClick="opensignupform()" style="margin-top:3%;">Create a new account</button>
                         <!--
                         <a  href="files/signup.php">
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" style="margin-top: 3%">Sign In</button>
@@ -172,6 +172,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 
 
@@ -205,7 +206,7 @@
             }
         });
     }
-    function signup(){
+    function opensignupform(){
         $.ajax({
             type: 'POST',
             url: '../tasklist/index.php?action=SignUpForm',
@@ -215,7 +216,6 @@
             success:function(data){
                 $('#appendsignup').empty();
                 $('#appendsignup').append(data);
-                console.log("ajax works");
             },
             error:function(){
                 location.reload();
