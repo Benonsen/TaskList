@@ -67,6 +67,8 @@ if(isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             case 'doLogin':
                 require_once '../tasklist/files/meta.login.php';
                 break;
+            case 'SignUpForm':
+                require_once '../tasklist/files/src.createaccount.php';
         }
     } else {
         require_once '../tasklist/files/src.login.php';

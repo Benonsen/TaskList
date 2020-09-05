@@ -10,7 +10,7 @@ Class UserDAO
 
         $db = new MySQLDatabase();
 
-        $stmt = $db->executeQuery('SELECT id, username, ismaster FROM user WHERE username=? and password=?', 'ss', $username, sha1($password));
+        $stmt = $db->executeQuery('SELECT id, username, ismaster FROM user WHERE username=? or email=? and password=?', 'sss', $username, $username , sha1($password));
         $stmt->bind_result($rs_id, $rs_name, $rs_ismaster);
 
         if ($stmt->fetch()) {

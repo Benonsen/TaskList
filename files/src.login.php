@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <style>
     :root {
         --input-padding-x: 1.5rem;
@@ -212,7 +208,7 @@
     function signup(){
         $.ajax({
             type: 'POST',
-            url: '../tasklist/index.php?action=1000',
+            url: '../tasklist/index.php?action=SignUpForm',
             beforeSend:function(a){
                 a.overrideMimeType('text/html; charset=UTF-8');
             },
