@@ -138,15 +138,30 @@
 
 
 </style>
-<script>
-    window.alert("sdfjh");
-</script>
+
 
 <div class="container" id="signup-form">
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card card-signin my-5">
                 <div class="card-body">
+                    <div class = "appendalert"></div>
+                    <!-- alert -->
+                     <div class="alert alert-danger" id = "alertdanger" style="display:none; text-align: center;">
+                         <strong>Attention! <br> </strong> Please enter all information asked below.
+                      </div>
+                    
+                    <div class="alert alert-danger" id = "alertUsername" style="display:none; text-align: center;">
+                         <strong>Attention! <br> </strong> Username is already taken.
+                      </div>
+                    
+                    <div class="alert alert-warning" id ="securePassword" style="display:none; text-align: center;">
+                        <strong>Warning!</strong> Please enter a secure password.
+                    </div>
+                    
+            
+                    
+                    
                     <h5 class="card-title text-center">SIGN UP</h5>
                     <form class="form-signin">
                         <div class="form-label-group">
@@ -159,7 +174,7 @@
                         </div>
                         
                         <div class="form-label-group">
-                            <input type="password" id="password" class="form-control" placeholder="password" >
+                            <input type="password" id="password" class="form-control" placeholder="password" onkeydown="checkpassword()" >
                             <label for="password">Password</label>
                         </div>
 
@@ -174,7 +189,17 @@
 </div>
 
 
+<?php
+                    if(isset($_SESSION["error"])){
+                        $error = $_SESSION["error"];
+                        echo "<span>$error</span>";
+                    }
+                ?>  
+
+
 <script>
+    
+    
     $('#username , #password').keypress(function (e) {
         var key = e.which;
         if(key == 13)
@@ -182,13 +207,60 @@
             doLogin();
         }
     });
-    function doSignUp(){
-        username = document.getElementById('username').value;
-        email = document.getElementById('email').value;
-        password = document.getElementById('password').value;
-         
+    
+    function checkpassword(){
+        var password = document.getElementById('password').value;
+        var securepassword = document.getElementById('securePassword');
+    
+        if (password.match(/[a-z]/g) && password.match(/[A-Z]/g) && password.match(/[0-9]/g) && password.match(/[^a-zA-Z\d]/g) && password.length >= 8) {
+            securepassword.style.display = "none";
+        } 
+        else{
+            securepassword.style.display = "block";
+        }   
+    }
+    /*
+    function checkUsername(){
+        var alertUsername = document.getElementById('alertUsername');
+        var username = document.getElementById('username').value;
+         $.ajax({
+            type: 'POST',
+            url: '../tasklist/index.php?action=doSignUp',
+            data: {
+                username: username,
+                checkusernamedb: 1
+            },
+            beforeSend:function(a){
+                a.overrideMimeType('text/html; charset=UTF-8');
+            },
+            success:function(data){
+                window.alert("signup");
+                $('#appendalert').append(data);
 
-        $.ajax({
+            },
+            error:function(){
+                window.alert("ajax1 error");
+                location.reload();
+            }
+        });
+        if (document.getElementById('usernameavailability').value != 1){
+            alertUsername.style.display = "block";
+        }else {
+            alertUsername.style.display = "none";
+        }
+        
+    }
+    */
+    function doSignUp(){
+        var username = document.getElementById('username').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var alertBoxnotAllInfoProvided = document.getElementById("alertdanger");
+         
+         if(username != "" && email != "" && password != ""){
+            alertBoxnotAllInfoProvided.style.display = "none";
+
+            $.ajax({
             type: 'POST',
             url: '../tasklist/index.php?action=doSignUp',
             data: {
@@ -203,9 +275,16 @@
                 location.reload();
             },
             error:function(){
+                window.alert("ajax1 error");
                 location.reload();
             }
         });
+         }
+         else{
+            
+            alertBoxnotAllInfoProvided.style.display = "block";
+         }
+        
     }
  
 </script>
