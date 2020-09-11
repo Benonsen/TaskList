@@ -67,15 +67,17 @@ Class UserDAO
         
     }
     
-    public static function checkUsername($username){
+    public static function checkUsername($username, $email){
         $db = new MySQLDatabase();
         
-        $stmt = $db->executeQuery('SELECT id FROM user WHERE username=?', 's', $username);
+        $stmt = $db->executeQuery('SELECT id FROM user WHERE username=? or email=?', 'ss', $username, $email);
         $stmt->bind_result($rs_id);
         
          if ($stmt->fetch()){
+            return FALSE;
             echo "<input type=hidden id=usernameavailability value=1>";
          }else {
+             return TRUE;
             echo "<input type=hidden id=usernameavailability value=0>";
         }
         
