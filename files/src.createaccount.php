@@ -189,12 +189,6 @@
 </div>
 
 
-<?php
-                    if(isset($_SESSION["error"])){
-                        $error = $_SESSION["error"];
-                        echo "<span>$error</span>";
-                    }
-                ?>  
 
 
 <script>

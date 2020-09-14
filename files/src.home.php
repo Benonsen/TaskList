@@ -1,4 +1,9 @@
 <link href="../tasklist/css/sb-admin-2.min.css" rel="stylesheet">
+
+<!--Bootstrap datepicker scripts-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+
 <style>
     /*
 *
@@ -105,7 +110,7 @@
 require_once '../tasklist/files/src.createTaskFrom.php';
 ?>
 <body style ="background-color:#d6d6d6;">
-    
+    <!--
     <div class="card text" style="margin:4%;">
 
         <div class="card-body">
@@ -274,7 +279,7 @@ require_once '../tasklist/files/src.createTaskFrom.php';
     </tr>
   </tbody>
 </table>
-        -->                
+ -->            
     <script>
         
        function logout() {
