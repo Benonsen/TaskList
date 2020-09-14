@@ -139,7 +139,7 @@
 
 </style>
 
-
+<div id="randomjscode"></div>
 <div class="container" id="signup-form">
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -252,39 +252,36 @@
     }
     */
     function doSignUp(){
-        var username = document.getElementById('username').value;
-        var email = document.getElementById('email').value;
-        var password = document.getElementById('password').value;
+        
         var alertBoxnotAllInfoProvided = document.getElementById("alertdanger");
          
          if(username != "" && email != "" && password != ""){
             alertBoxnotAllInfoProvided.style.display = "none";
-
-            $.ajax({
-            type: 'POST',
-            url: '../tasklist/index.php?action=doSignUp',
-            data: {
-                username: username,
-                email: email,
-                password: password
-            },
-            beforeSend:function(a){
-                a.overrideMimeType('text/html; charset=UTF-8');
-            },
-            success:function(data){
-                location.reload();
-            },
-            error:function(){
-                window.alert("ajax1 error");
-                location.reload();
-            }
-        });
+            $.when(callajaxwating()).then(function successHandler(data){
+                console.log(data);
+            }, function errorHandler(){
+                console.log("error");
+            });
          }
          else{
             
             alertBoxnotAllInfoProvided.style.display = "block";
          }
         
+    }
+    function callajaxwating(){
+        var username = document.getElementById('username').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        return $.ajax({
+            type: 'POST',
+            url: '../tasklist/index.php?action=doSignUp',
+            data: {
+                username: username,
+                email: email,
+                password: password
+            }
+            });
     }
  
 </script>

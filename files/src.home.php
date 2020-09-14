@@ -1,8 +1,3 @@
-<?php
-require_once '../tasklist/header.php';
-
-?>
-
 <link href="../tasklist/css/sb-admin-2.min.css" rel="stylesheet">
 <style>
     /*
@@ -104,19 +99,19 @@ require_once '../tasklist/header.php';
         background: #d6d6d6;
         color: #d6d6d6;
     }
-
-
 </style>
 
-
-<body>
-
+<?php 
+require_once '../tasklist/files/src.createTaskFrom.php';
+?>
+<body style ="background-color:#d6d6d6;">
+    
     <div class="card text" style="margin:4%;">
 
         <div class="card-body">
             <h5 class="card-title">Task 1</h5>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.
-            <div class=col-sm-6">
+            <div class="rigth">
                 <div class="progress mx-auto" data-value='25'>
                 <span class="progress-left">
                             <span class="progress-bar border-danger"></span>
@@ -155,11 +150,11 @@ require_once '../tasklist/header.php';
                     <td>
                         <div class="team">
                             <a href="javascript: void(0);" class="team-member">
-                                <img src="assets/images/users/avatar-2.jpg" class="rounded-circle avatar-xs m-1" alt="">
+                                <img src="../tasklist/images/users-solid.svg" class="rounded-circle avatar-xs m-1" alt="">
                             </a>
 
                             <a href="javascript: void(0);" class="team-member">
-                                <img src="assets/images/users/avatar-1.jpg" class="rounded-circle avatar-xs m-1" alt="">
+                                <img src="../tasklist/images/users-solid.svg" class="rounded-circle avatar-xs m-1" alt="">
                             </a>
                         </div>
                     </td>
@@ -182,11 +177,11 @@ require_once '../tasklist/header.php';
                     <td>
                         <div class="team">
                             <a href="javascript: void(0);" class="team-member d-inline-block">
-                                <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="">
+                                <img src="../tasklist/images/users-solid.svg" class="rounded-circle avatar-xs m-1" alt="">
                             </a>
 
                             <a href="javascript: void(0);" class="team-member d-inline-block">
-                                <img src="assets/images/users/avatar-5.jpg" class="rounded-circle avatar-xs m-1" alt="">
+                                <img src="../tasklist/images/users-solid.svg" class="rounded-circle avatar-xs m-1" alt="">
                             </a>
 
                             <a href="javascript: void(0);" class="team-member d-inline-block">
@@ -245,9 +240,44 @@ require_once '../tasklist/header.php';
                 </tbody>
             </table>
         </div>
+<!--
+<table class="table table-hover">
+ 
+  <tbody>
+    <tr>
+        <th rowspan="2" scope="row">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+                <label class="custom-control-label" for="defaultUnchecked"></label>
+            </div>
+            
+        </th>
+        <td><b>Titel</b></td>
+      <td>Edit</td>
 
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <td>@fat</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry the Bird</td>
+      <td>Larry the Bird</td>
+      <td>@twitter</td>
+      <td>@twitter</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+        -->                
     <script>
-        function logout() {
+        
+       function logout() {
             $.ajax({
                 type: 'POST',
                 url: '../tasklist/index.php?action=1',

@@ -39,9 +39,12 @@ if(isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                 require_once '../tasklist/files/meta.login.php';
 
             case 1000:
-                require '../tasklist/files/src.createaccount.php';
+                require_once '../tasklist/files/src.createaccount.php';
                 break;
-
+            
+            case 2000:
+                require_once '../tasklist/files/src.createTaskFrom.php';
+                break;
 
         }
     } else {

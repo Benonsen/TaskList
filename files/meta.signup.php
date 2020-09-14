@@ -14,11 +14,26 @@ if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email
         
         
         $signup = userdao::doSignUP($_POST['username'], $_POST['email'], $_POST['password']);
+        ?> 
+        <script>
+            console.log("neuer Nutzer");
+            window.alert("neuer Nutzer");
+            location.reload();
+        </script> 
+        <?php
     }
     else{
         //moch oanfoch no nix -> man kimmp wieder auf die login page 
         //am besten do no a fehlermeldung ausgeben
+        //js funktion aufruafen de a fehlermeldung ausgib 
         echo "asdfjkhasölkdfjalöskdjf";
+        ?>
+        <script>
+            console.log("fehler");
+            window.alert("fehler");
+            location.reload();
+        </script> 
+        <?php
     }
     
 }
