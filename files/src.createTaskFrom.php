@@ -74,7 +74,7 @@
                         <div class="form-group">
                           <label for="formControlRange" style="text-align: center;">Priority</label>
                           <input type="range" min="0" max="100" value="50" step="10" class="form-control-range" id="formControlRange">
-                          <p>Value: <span id="demo"></span></p>
+                          <p>Value: <span id="outputPercentagePriority"></span></p>
                         </div>
 
             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="button" style="margin-top:5%;" onclick="createTask()">Save task</button>
@@ -87,30 +87,72 @@
 </div>
 <script>
 var slider = document.getElementById("formControlRange");
-var output = document.getElementById("demo");
+var output = document.getElementById("outputPercentagePriority");
 output.innerHTML = slider.value;
 
 slider.oninput = function() {
   output.innerHTML = this.value;
 }
 function clearFormCreateTask(){
+        console.log(document.getElementById('createTaskDate').value);
+
     document.getElementById('createTaskTitle').value = "";
     document.getElementById('createTaskDescripton').value = "";
     document.getElementById('createTaskDate').value = "";
-    document.getElementById('formControlRange').value = 50;
+    document.getElementById('formControlRange').value = 50
+    var output = document.getElementById("outputPercentagePriority");
+    output.innerHTML = "50";
+    
 }
 function createTask(){
     var titel = document.getElementById('createTaskTitle').value;
     var beschreibung = document.getElementById('createTaskDescripton').value;
     var datum = document.getElementById('createTaskDate').value;
     var prioritaet = document.getElementById('formControlRange').value;
+    var user_id = document.getElementById().value;
+    
     
     if(!!titel && !!beschreibung && !!datum && !!prioritaet){
         //kein feld isch leer; daten koennen in zur db gschicket werden
-        window.alert("data will be transmitted");
+            //ajax
+    $.ajax({
+                type: 'POST',
+                url: '../tasklist/index.php?action=2500',
+                data: {
+                    titeldb: titel,
+                    beschreibungdb: beschreibung, 
+                    datumdb: datum,
+                    prioritaetdb: prioritaet,
+                    user_id_db: user_id
+                },
+                beforeSend:function(a){
+                    a.overrideMimeType('text/html; charset=UTF-8');
+                },
+                success:function(data){
+                    window.alert("data will be transmitted");
+
+                },
+                error:function(){
+                    location.reload();
+                }
+            });
+        
+        
+        
     }
     else{
         window.alert("please enter all information provided");
     }
+        clearFormCreateTask();
+
+}
+
+function sendDataCreateTask() {
+
+
+    
+    
+
+
 }
 </script>
