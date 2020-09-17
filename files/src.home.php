@@ -109,6 +109,7 @@
 <?php
 require_once '../tasklist/files/src.createTaskFrom.php';
 ?>
+<input type="hidden" id="useridInput" value="<?php echo $_SESSION['user']['id']; ?>">
 
 <body style="background-color:#d6d6d6;">
     <!--

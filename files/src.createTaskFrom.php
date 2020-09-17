@@ -109,7 +109,14 @@ function createTask(){
     var beschreibung = document.getElementById('createTaskDescripton').value;
     var datum = document.getElementById('createTaskDate').value;
     var prioritaet = document.getElementById('formControlRange').value;
-    var user_id = document.getElementById().value;
+    var user_id = document.getElementById('useridInput').value;
+    
+    
+    console.log(titel);
+    console.log(beschreibung);
+    console.log(datum);
+    console.log(prioritaet);
+    console.log(user_id);
     
     
     if(!!titel && !!beschreibung && !!datum && !!prioritaet){
@@ -130,6 +137,7 @@ function createTask(){
                 },
                 success:function(data){
                     window.alert("data will be transmitted");
+                    location.reload();
 
                 },
                 error:function(){
