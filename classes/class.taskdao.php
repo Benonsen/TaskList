@@ -11,6 +11,9 @@ Class Taskdao
       
       $stmt = $db->executeQuery('INSERT INTO task (create_date, modify_date, titel, end_date, beschreibung, priority, user_id) VALUES  (?,?,?,?,?,?,?)', 'iisissi', time(), 0, $titel, $datum, $beschreibung, $prio, $user_id);
       
+      //echo "<a class=btn btn-success onclick=toastr.success('Hi! I am success message.');>Success message</a>";
+      
+      
       $db->getLastInsertID();
           
     }
