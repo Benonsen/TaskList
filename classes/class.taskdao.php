@@ -8,7 +8,10 @@ Class Taskdao
     {
       $db = new MySQLDatabase();
       
-      $stmt = $db->executeQuery('INSERT INTO task (create_date, modify_date, titel, beschreibung, start_date, end_date, category, priority, user_id)')
+      $stmt = $db->executeQuery('INSERT INTO task (create_date, modify_date, titel, beschreibung, priority, user_id) VALUES  (?,?,?,?,?,?,?,?,?,?)', 'iissssi', time(), 0, $titel, $beschreibung, $prio, $user_id);
+      
+      $db->getLastInsertID();
+          
     }
      
     public static function doSignUP($username, $email, $password){

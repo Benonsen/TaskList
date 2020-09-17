@@ -7,7 +7,7 @@
 
     html {
         background: #d6d6d6;
-    //background: linear-gradient(to right, #defeff, #a3fcff);
+        //background: linear-gradient(to right, #defeff, #a3fcff);
     }
 
     .card-signin {
@@ -108,6 +108,7 @@
         .form-label-group>label {
             display: none;
         }
+
         .form-label-group input::-ms-input-placeholder {
             color: #777;
         }
@@ -121,6 +122,7 @@
         .form-label-group>label {
             display: none;
         }
+
         .form-label-group input:-ms-input-placeholder {
             color: #777;
         }
@@ -134,9 +136,6 @@
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
     }
-
-
-
 </style>
 
 <div id="randomjscode"></div>
@@ -145,36 +144,36 @@
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card card-signin my-5">
                 <div class="card-body">
-                    <div class = "appendalert"></div>
+                    <div class="appendalert"></div>
                     <!-- alert -->
-                     <div class="alert alert-danger" id = "alertdanger" style="display:none; text-align: center;">
-                         <strong>Attention! <br> </strong> Please enter all information asked below.
-                      </div>
-                    
-                    <div class="alert alert-danger" id = "alertUsername" style="display:none; text-align: center;">
-                         <strong>Attention! <br> </strong> Username is already taken.
-                      </div>
-                    
-                    <div class="alert alert-warning" id ="securePassword" style="display:none; text-align: center;">
+                    <div class="alert alert-danger" id="alertdanger" style="display:none; text-align: center;">
+                        <strong>Attention! <br> </strong> Please enter all information asked below.
+                    </div>
+
+                    <div class="alert alert-danger" id="alertUsername" style="display:none; text-align: center;">
+                        <strong>Attention! <br> </strong> Username is already taken.
+                    </div>
+
+                    <div class="alert alert-warning" id="securePassword" style="display:none; text-align: center;">
                         <strong>Warning!</strong> Please enter a secure password.
                     </div>
-                    
-            
-                    
-                    
+
+
+
+
                     <h5 class="card-title text-center">SIGN UP</h5>
                     <form class="form-signin">
                         <div class="form-label-group">
-                            <input type="text" id="username" class="form-control" placeholder="username"  autofocus autocomplete="off">
+                            <input type="text" id="username" class="form-control" placeholder="username" autofocus autocomplete="off">
                             <label for="username">Username</label>
                         </div>
                         <div class="form-label-group">
-                            <input type="email" id="email" class="form-control" placeholder="email"  autofocus autocomplete="off">
+                            <input type="email" id="email" class="form-control" placeholder="email" autofocus autocomplete="off">
                             <label for="email">Email address</label>
                         </div>
-                        
+
                         <div class="form-label-group">
-                            <input type="password" id="password" class="form-control" placeholder="password" onkeydown="checkpassword()" >
+                            <input type="password" id="password" class="form-control" placeholder="password" onkeydown="checkpassword()">
                             <label for="password">Password</label>
                         </div>
 
@@ -192,26 +191,22 @@
 
 
 <script>
-    
-    
-    $('#username , #password').keypress(function (e) {
+    $('#username , #password').keypress(function(e) {
         var key = e.which;
-        if(key == 13)
-        {
+        if (key == 13) {
             doLogin();
         }
     });
-    
-    function checkpassword(){
+
+    function checkpassword() {
         var password = document.getElementById('password').value;
         var securepassword = document.getElementById('securePassword');
-    
+
         if (password.match(/[a-z]/g) && password.match(/[A-Z]/g) && password.match(/[0-9]/g) && password.match(/[^a-zA-Z\d]/g) && password.length >= 8) {
             securepassword.style.display = "none";
-        } 
-        else{
+        } else {
             securepassword.style.display = "block";
-        }   
+        }
     }
     /*
     function checkUsername(){
@@ -245,25 +240,25 @@
         
     }
     */
-    function doSignUp(){
-        
+    function doSignUp() {
+
         var alertBoxnotAllInfoProvided = document.getElementById("alertdanger");
-         
-         if(username != "" && email != "" && password != ""){
+
+        if (username != "" && email != "" && password != "") {
             alertBoxnotAllInfoProvided.style.display = "none";
-            $.when(callajaxwating()).then(function successHandler(data){
+            $.when(callajaxwating()).then(function successHandler(data) {
                 console.log(data);
-            }, function errorHandler(){
+            }, function errorHandler() {
                 console.log("error");
             });
-         }
-         else{
-            
+        } else {
+
             alertBoxnotAllInfoProvided.style.display = "block";
-         }
-        
+        }
+
     }
-    function callajaxwating(){
+
+    function callajaxwating() {
         var username = document.getElementById('username').value;
         var email = document.getElementById('email').value;
         var password = document.getElementById('password').value;
@@ -275,7 +270,6 @@
                 email: email,
                 password: password
             }
-            });
+        });
     }
- 
 </script>

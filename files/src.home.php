@@ -82,22 +82,22 @@
         left: 0;
     }
 
-.card{
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 0 solid #f6f6f6;
-    border-radius: .25rem;
-}
+    .card {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid #f6f6f6;
+        border-radius: .25rem;
+    }
 
 
     html {
@@ -106,10 +106,11 @@
     }
 </style>
 
-<?php 
+<?php
 require_once '../tasklist/files/src.createTaskFrom.php';
 ?>
-<body style ="background-color:#d6d6d6;">
+
+<body style="background-color:#d6d6d6;">
     <!--
     <div class="card text" style="margin:4%;">
 
@@ -245,7 +246,7 @@ require_once '../tasklist/files/src.createTaskFrom.php';
                 </tbody>
             </table>
         </div>
-<!--
+
 <table class="table table-hover">
  
   <tbody>
@@ -279,23 +280,22 @@ require_once '../tasklist/files/src.createTaskFrom.php';
     </tr>
   </tbody>
 </table>
- -->            
+ -->
     <script>
-        
-       function logout() {
+        function logout() {
             $.ajax({
                 type: 'POST',
                 url: '../tasklist/index.php?action=1',
                 data: {
                     'logout': 1
                 },
-                beforeSend:function(a){
+                beforeSend: function(a) {
                     a.overrideMimeType('text/html; charset=UTF-8');
                 },
-                success:function(data){
+                success: function(data) {
                     location.reload();
                 },
-                error:function(){
+                error: function() {
                     location.reload();
                 }
             });

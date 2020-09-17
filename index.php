@@ -19,10 +19,9 @@
 <!-- Blau-Farbton logo 46c4f9 -->
 
 <style>
-    body{
+    body {
         background: #efefef;
     }
-
 </style>
 <?php
 require_once '../tasklist/classes/class.user.php';
@@ -32,31 +31,30 @@ require_once '../tasklist/classes/database/class.STDMySQLDatabase.php';
 
 session_start();
 
-if(isset($_SESSION['user']) && !empty($_SESSION['user'])) {
-    if(isset($_GET['action'])) {
-        switch($_GET['action']) {
+if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+    if (isset($_GET['action'])) {
+        switch ($_GET['action']) {
             case 1:
                 require_once '../tasklist/files/meta.login.php';
 
             case 1000:
                 require_once '../tasklist/files/src.createaccount.php';
                 break;
-            
+
             case 2000:
                 require_once '../tasklist/files/src.createTaskFrom.php';
                 break;
-            
+
             case 2500:
                 require_once '../tasklist/files/meta.createTask.php';
                 break;
-
         }
     } else {
         require_once '../tasklist/files/src.home.php';
     }
 } else {
-    if(isset($_GET['action'])) {
-        switch($_GET['action']) {
+    if (isset($_GET['action'])) {
+        switch ($_GET['action']) {
             case 'doLogin':
                 require_once '../tasklist/files/meta.login.php';
                 break;
@@ -66,12 +64,9 @@ if(isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             case 'doSignUp':
                 require_once '../tasklist/files/meta.signup.php';
                 break;
-      
-            
         }
     } else {
         require_once '../tasklist/files/src.login.php';
     }
 }
 ?>
-
