@@ -101,17 +101,21 @@
 
 
     html {
-        background: #d6d6d6;
-        color: #d6d6d6;
+/*        background: #d6d6d6;
+        color: #d6d6d6;*/
+        background: #000000;
     }
 </style>
 
 <?php
 require_once '../tasklist/files/src.createTaskFrom.php';
+require_once '../tasklist/files/src.showtask.php';
 ?>
 <input type="hidden" id="useridInput" value="<?php echo $_SESSION['user']['id']; ?>">
+  
 
-<body style="background-color:#d6d6d6;">
+
+<body style="background-color:#000000;">
     <!--
     <div class="card text" style="margin:4%;">
 

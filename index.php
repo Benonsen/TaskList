@@ -20,7 +20,8 @@
 
 <style>
     body {
-        background: #efefef;
+        background: #000000;
+        //background: #efefef;
     }
 </style>
 <?php
