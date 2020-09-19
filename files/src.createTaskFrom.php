@@ -1,5 +1,7 @@
 <?php
-
+    require_once '../tasklist/classes/class.taskdao.php';
+    require_once '../tasklist/classes/database/class.STDMySQLDatabase.php';
+    
 ?>
 <style>
 .slidecontainer {
@@ -54,7 +56,7 @@
       <div class="modal-body">
         <form class="form-signin">
                         <div class="form-label-group">
-                            <input type="text" id="createTaskTitle" class="form-control" placeholder="Title"  autofocus autocomplete="off">
+                            <input type="text" id="createTaskTitle" class="form-control" placeholder="Title" autofocus autocomplete="off">
                             <label for="createTaskTitle">Title</label>
                         </div>
 

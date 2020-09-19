@@ -3,9 +3,9 @@ require_once '../tasklist/classes/class.taskdao.php';
 require_once '../tasklist/classes/database/class.STDMySQLDatabase.php';
 
 Class Task implements JsonSerializable {
-    private $id, $create_date, $modify_date, $titel, $beschreibung, $start_date, $end_date, $catergory, $priority, $user_id;
+    private $id, $create_date, $modify_date, $titel, $beschreibung, $start_date, $end_date, $catergory, $priority, $user_id, $done;
 
-    public function __construct($_id, $_create_date, $_modify_date, $_titel, $_beschreibung, $_start_date, $_end_date, $_catergory, $_priority, $_user_id) {
+    public function __construct($_id, $_create_date, $_modify_date, $_titel, $_beschreibung, $_start_date, $_end_date, $_catergory, $_priority, $_user_id, $_done) {
         $this->id = $_id;
         $this->create_date = $_create_date;
         $this->modify_date = $_modify_date;
@@ -16,6 +16,8 @@ Class Task implements JsonSerializable {
         $this->catergory = $_catergory;
         $this->priority = $_priority;
         $this->user_id = $_user_id;
+        $this->done = $_done;
+        
     }
 
     public function __get($property) {

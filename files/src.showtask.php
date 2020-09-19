@@ -3,19 +3,39 @@
     require_once '../tasklist/classes/database/class.STDMySQLDatabase.php';
     
     $task = taskdao::getAllTaskByUserId();
+    $randomnummer = 1;
+    echo $task[$randomnummer]->titel;
     //var_dump($task);
-    echo $task[0]->id;
-//    foreach($task as $t_done){
-//        if($t_done->end_date < time()){
-//            //task isch schun verfollen -> warning
-//        }
-//    }
+    $warning = "";
+    foreach($task as $t_done){
+        if($t_done->end_date < time() && $t_done->done != 0){
+            $overdue_days = floor((time() - (($t_done->end_date)))/(60*60*24));
+            if($overdue_days >= 2){
+                $overdue_days .= " days";
+            }
+            else{
+                $overdue_days .= " day";
+            }
+            if($overdue_days == 0){
+                $overdue_days = floor(date('h', time()) - date('h', $t_done->end_date));
+                if($overdue_days >= 2){
+                    $overdue_days .= " hours";
+                } else{
+                    $overdue_days .= " hour";
+                }
+            }
+            $warning .= "<div class='alert alert-danger' role='alert' onclick=testnotification($t_done->id)>"
+                            ."Your task: $t_done->titel is overdue by $overdue_days!"
+                        ."</div>";
+        }
+    }
+    echo $warning;
     $htmlcontetOutput = "";
     $task_counter = 0;
     $current_id = 0;
     foreach($task as $t){
-        $current_id = $t->id;
-        if($task_counter == 0){
+        if($t->done != 0){
+            if($task_counter == 0){
             //neue zeile
             $htmlcontetOutput .= "<div class='row' style='margin-top:2%;'>"
                 ."<div class='col-md-3'>"
@@ -28,22 +48,21 @@
                     ."</div>"
                   ."</div>"
                 ."</div>";
-        }else if($task_counter % 3 == 0){
-            $htmlcontetOutput .= "</div>"
-                    ."<div class='row'  style='margin-top:2%;'>"
-                ."<div class='col-md-3'>"
-                  ."<div class='card'>"
-                    ."<div class='card-body'>"
-                      ."<h5 class='card-title'>".$t->titel ."</h5>"
-                      ."<p class='card-text'>".$t->beschreibung."</p>"
-                      ."<a href='' onclick='edittask(".$t->id.")' class='card-link'>Edit</a>"
-                      ."<a href='' onclick='marktaskasdone(".$t->id.")' class='card-link'>Mark as done</a>"
-                    ."</div>"
-                  ."</div>"
-                ."</div>";
-        }
-        
-        else{
+            }else if($task_counter % 3 == 0){
+                $htmlcontetOutput .= "</div>"
+                        ."<div class='row'  style='margin-top:2%;'>"
+                    ."<div class='col-md-3'>"
+                      ."<div class='card'>"
+                        ."<div class='card-body'>"
+                          ."<h5 class='card-title'>".$t->titel ."</h5>"
+                          ."<p class='card-text'>".$t->beschreibung."</p>"
+                          ."<a href='' onclick='edittask(".$t->id.")' class='card-link'>Edit</a>"
+                          ."<a href='' onclick='marktaskasdone(".$t->id.")' class='card-link'>Mark as done</a>"
+                        ."</div>"
+                      ."</div>"
+                    ."</div>";
+            }
+            else{
            $htmlcontetOutput .= "<div class='col-md-3'>"
                         ."<div class='card'>"
                           ."<div class='card-body'>"
@@ -54,73 +73,21 @@
                           ."</div>"
                         ."</div>"
                       ."</div>"; 
+            }
+            $task_counter++;
         }
-        $task_counter++;
-        echo $task_counter;
-
+        
     }
-    $slkjdf = "";
-   
-    
-   echo $htmlcontetOutput;
+    echo $htmlcontetOutput;
 ?>
 
 
+<div id="testinputtaskid">
 
-<!-- Modal -->
-<div class="modal fade" id="editTask" tabindex="-1" role="dialog" aria-labelledby="editTask" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Edit your Task</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="clearFormCreateTask()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form class="form-signin">
-                        <div class="form-label-group">
-                            <input type="text" id="editTaskTitle" class="form-control" placeholder="Title"  autofocus autocomplete="off">
-                            <label for="editTaskTitle"><?php echo $task[$SESSION['taskid']]->titel ?></label>
-                        </div>
-
-                        <div class="form-label-group">
-                            <input type="text" id="editTaskDescripton" class="form-control" placeholder="Description">
-                            <label for="editTaskDescripton">Description</label>
-                        </div>
-            
-                        <div class="form-label-group">
-                            <input type="date" id="editTaskDate" class="form-control" placeholder="Date" min="<?php echo date('Y-m-d', time())?>">
-                            <label for="editTaskDate">Date</label>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="EditformControlRange" style="text-align: center;">Priority</label>
-                          <input type="range" min="0" max="100" value="50" step="10" class="form-control-range" id="EditformControlRange">
-                          <p>Value: <span id="outputPercentagePriorityEdit"></span></p>
-                        </div>
-
-            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="button" style="margin-top:5%;" data-dismiss="modal" onclick="editTask()">Save changes</button>
-            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="button" style="margin-top:3%;" data-dismiss="modal" onclick="clearFormCreateTask()">Cancel</button>
-
-        </form>
-      </div>
-    </div>
-  </div>
 </div>
-<div style="display: none;" id="testinputtaskid"></div>
 <script>
-function editTask(){
-    task_id = taskid();
-}
-function marktaskasdone(taskid){
-    window.alert(taskid+1);
-    
-}
 
 function openeditTaskForm(taskid){
-    
-        
         $.ajax({
                 type: 'POST',
                 url: '../tasklist/index.php?action=3000',
@@ -131,9 +98,8 @@ function openeditTaskForm(taskid){
                     a.overrideMimeType('text/html; charset=UTF-8');
                 },
                 success: function(data) {
-
-                    //console.log(data);
-                    //location.reload();
+                    $('#testinputtaskid').empty();
+                    $('#testinputtaskid').append(data);
                 },
                 error: function() {
                     location.reload();

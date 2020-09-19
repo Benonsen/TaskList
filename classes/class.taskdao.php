@@ -23,12 +23,12 @@ Class Taskdao
         
         $stmt = $db->executeQuery('SELECT * FROM task WHERE user_id=?', 'i', $_SESSION['user']['id']);
         
-        $stmt->bind_result($rs_id, $rs_create_date, $rs_modify_date, $rs_titel, $rs_beschreibung, $rs_start_date, $rs_end_date, $rs_category, $rs_priority, $user_id);
+        $stmt->bind_result($rs_id, $rs_create_date, $rs_modify_date, $rs_titel, $rs_beschreibung, $rs_start_date, $rs_end_date, $rs_category, $rs_priority, $user_id, $done);
                 
         $result = Array();
         
         while ($stmt->fetch()){
-            $result[] = new Task($rs_id, $rs_create_date, $rs_modify_date, $rs_titel, $rs_beschreibung, $rs_start_date, $rs_end_date, $rs_category, $rs_priority, $user_id);
+            $result[] = new Task($rs_id, $rs_create_date, $rs_modify_date, $rs_titel, $rs_beschreibung, $rs_start_date, $rs_end_date, $rs_category, $rs_priority, $user_id, $done);
         }
         
         return $result;
