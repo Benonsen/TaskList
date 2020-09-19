@@ -4,6 +4,7 @@
     
     $task = taskdao::getAllTaskByUserId();
     //var_dump($task);
+    echo $task[0]->id;
 //    foreach($task as $t_done){
 //        if($t_done->end_date < time()){
 //            //task isch schun verfollen -> warning
@@ -48,7 +49,7 @@
                           ."<div class='card-body'>"
                       ."<h5 class='card-title'>".$t->titel ."</h5>"
                       ."<p class='card-text'>".$t->beschreibung."</p>"
-                      ."<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#editTask' onclick='taskid(".$t->id.")'>Create new task!</button>"
+                      ."<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#editTask' onclick='openeditTaskForm(".$t->id.")'>Create new task!</button>"
                       ."<a href='' onclick='marktaskasdone(".$t->id.")' class='card-link'>Mark as done</a>"
                           ."</div>"
                         ."</div>"
@@ -79,8 +80,8 @@
       <div class="modal-body">
         <form class="form-signin">
                         <div class="form-label-group">
-                            <input type="text" id="editTaskTitle" class="form-control" placeholder="Title"  autofocus autocomplete="off" value="<?php echo $this->$task[$current_id]->titel; ?>">
-                            <label for="editTaskTitle">Title</label>
+                            <input type="text" id="editTaskTitle" class="form-control" placeholder="Title"  autofocus autocomplete="off">
+                            <label for="editTaskTitle"><?php echo $task[$SESSION['taskid']]->titel ?></label>
                         </div>
 
                         <div class="form-label-group">
@@ -107,7 +108,7 @@
     </div>
   </div>
 </div>
-
+<div style="display: none;" id="testinputtaskid"></div>
 <script>
 function editTask(){
     task_id = taskid();
@@ -117,7 +118,26 @@ function marktaskasdone(taskid){
     
 }
 
-function taskid(taskid){
-    return taskid;
+function openeditTaskForm(taskid){
+    
+        
+        $.ajax({
+                type: 'POST',
+                url: '../tasklist/index.php?action=3000',
+                data: {
+                    task_id: taskid
+                },
+                beforeSend: function(a) {
+                    a.overrideMimeType('text/html; charset=UTF-8');
+                },
+                success: function(data) {
+
+                    //console.log(data);
+                    //location.reload();
+                },
+                error: function() {
+                    location.reload();
+                }
+            });
 }
 </script>

@@ -50,6 +50,10 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                 require_once '../tasklist/files/meta.createTask.php';
                 break;
             
+            case 3000:
+                require_once '../tasklist/files/meta.ContetntEditTask.php';
+                break;
+            
 //            case 3000:
 //                require_once '../tasklist/files/';
         }
