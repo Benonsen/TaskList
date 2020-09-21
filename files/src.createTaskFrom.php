@@ -1,6 +1,4 @@
 <?php
-    require_once '../tasklist/classes/class.taskdao.php';
-    require_once '../tasklist/classes/database/class.STDMySQLDatabase.php';
     
 ?>
 <style>
