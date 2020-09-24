@@ -86,8 +86,10 @@
 
 </div>
 <script>
+    $('#openeditTaskForm').click();
 
 function openeditTaskForm(taskid){
+    if(taskid != 987654321 && )
         $.ajax({
                 type: 'POST',
                 url: '../tasklist/index.php?action=3000',
