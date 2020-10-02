@@ -4,7 +4,7 @@
     
     $task = taskdao::getAllTaskByUserId();
     $randomnummer = 1;
-    echo $task[$randomnummer]->titel;
+    
     //var_dump($task);
     $warning = "";
     foreach($task as $t_done){
@@ -39,24 +39,24 @@
             //neue zeile
             $htmlcontetOutput .= "<div class='row' style='margin-top:2%;'>"
                 ."<div class='col-md-3'>"
-                  ."<div class='card'>"
-                    ."<div class='card-body'>"
+                  ."<div class='card' >"
+                    ."<div class='card-body' >"
                       ."<h5 class='card-title'>".$t->titel ."</h5>"
                       ."<p class='card-text'>".$t->beschreibung."</p>"
-                      ."<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#editTask' onclick='openeditTaskForm(".$t->id.")'>Edit task</button>"
+                      ."<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#editTask' data-backdrop='static' data-keyboard='false' onclick='openeditTaskForm(".$t->id.")'>Edit task</button>"
                       ."<a href='' onclick='marktaskasdone(".$t->id.")' class='card-link'>Mark as done</a>"
                     ."</div>"
                   ."</div>"
                 ."</div>";
             }else if($task_counter % 3 == 0){
                 $htmlcontetOutput .= "</div>"
-                        ."<div class='row'  style='margin-top:2%;'>"
+                        ."<div class='row'  style='margin-top:2%';>"
                     ."<div class='col-md-3'>"
                       ."<div class='card'>"
-                        ."<div class='card-body'>"
+                        ."<div class='card-body' >"
                           ."<h5 class='card-title'>".$t->titel ."</h5>"
                           ."<p class='card-text'>".$t->beschreibung."</p>"
-                          ."<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#editTask' onclick='openeditTaskForm(".$t->id.")'>Edit task</button>"
+                          ."<button type='button' class='btn btn' data-toggle='modal' data-target='#editTask' data-backdrop='static' data-keyboard='false' onclick='openeditTaskForm(".$t->id.")'>Edit task</button>"
                           ."<a href='' onclick='marktaskasdone(".$t->id.")' class='card-link'>Mark as done</a>"
                         ."</div>"
                       ."</div>"
@@ -65,10 +65,10 @@
             else{
            $htmlcontetOutput .= "<div class='col-md-3'>"
                         ."<div class='card'>"
-                          ."<div class='card-body'>"
+                          ."<div class='card-body' >"
                       ."<h5 class='card-title'>".$t->titel ."</h5>"
                       ."<p class='card-text'>".$t->beschreibung."</p>"
-                      ."<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#editTask' onclick='openeditTaskForm(".$t->id.")'>Edit task</button>"
+                      ."<button type='button' class='btn' data-toggle='modal' data-target='#editTask' data-backdrop='static' data-keyboard='false' onclick='openeditTaskForm(".$t->id.")'>Edit task</button>"
                       ."<a href='' onclick='marktaskasdone(".$t->id.")' class='card-link'>Mark as done</a>"
                           ."</div>"
                         ."</div>"
@@ -80,32 +80,43 @@
     }
     echo $htmlcontetOutput;
 ?>
-
-
 <div id="testinputtaskid">
-
 </div>
 <script>
-    $('#openeditTaskForm').click();
+//openeditTaskForm(987654321);
+//console.log("sakdfj");
+var countereditTask = 0;
 
-function openeditTaskForm(taskid){
-    if(taskid != 987654321 && )
-        $.ajax({
-                type: 'POST',
-                url: '../tasklist/index.php?action=3000',
-                data: {
-                    task_id: taskid
-                },
-                beforeSend: function(a) {
-                    a.overrideMimeType('text/html; charset=UTF-8');
-                },
-                success: function(data) {
-                    $('#testinputtaskid').empty();
-                    $('#testinputtaskid').append(data);
-                },
-                error: function() {
-                    location.reload();
-                }
-            });
+function openeditTaskForm(taskid) {
+    
+    $.ajax({
+        type: 'POST',
+        url: '../tasklist/index.php?action=3001',
+        data: {
+            task_id: taskid
+        },
+        beforeSend: function(a) {
+            console.log(countereditTask);
+            if (countereditTask > 1) {
+                document.getElementById('editTaskTitle').value = ' ';
+                document.getElementById('editTaskDescripton').value = ' ';
+                document.getElementById('editTaskDate').value = '';
+                document.getElementById('EditformControlRange').value = 50;
+                var output = document.getElementById("outputPercentagePriority");
+                output.innerHTML = "50";
+                console.log("fertig");
+            }
+            countereditTask += 1;
+            a.overrideMimeType('text/html; charset=UTF-8');
+        },
+        success: function(data) {
+
+            $('#testinputtaskid').empty();
+            $('#testinputtaskid').append(data);
+        },
+        error: function() {
+            location.reload();
+        }
+    });
 }
 </script>
