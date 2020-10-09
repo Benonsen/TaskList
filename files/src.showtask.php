@@ -34,10 +34,10 @@
     $task_counter = 0;
     $current_id = 0;
     foreach($task as $t){
-        if($t->done != 0){
+        if($t->done != 1){
             if($task_counter == 0){
             //neue zeile
-            $htmlcontetOutput .= "<div class='row' style='margin-top:2%;'>"
+            $htmlcontetOutput .= "<div class='row'>"
                 ."<div class='col-md-3'>"
                   ."<div class='card' >"
                     ."<div class='card-body' >"
@@ -50,7 +50,7 @@
                 ."</div>";
             }else if($task_counter % 3 == 0){
                 $htmlcontetOutput .= "</div>"
-                        ."<div class='row'  style='margin-top:2%';>"
+                        ."<div class='row'>"
                     ."<div class='col-md-3'>"
                       ."<div class='card'>"
                         ."<div class='card-body' >"
@@ -60,9 +60,9 @@
                           ."<a href='' onclick='marktaskasdone(".$t->id.")' class='card-link'>Mark as done</a>"
                         ."</div>"
                       ."</div>"
-                    ."</div>";
-            }
-            else{
+                    ."</div>";            
+                }
+            else {
            $htmlcontetOutput .= "<div class='col-md-3'>"
                         ."<div class='card'>"
                           ."<div class='card-body' >"
@@ -120,3 +120,17 @@ function openeditTaskForm(taskid) {
     });
 }
 </script>
+
+<style>
+.card{
+    margin-top: 4%;
+    margin-right: 5%;
+
+}
+
+@media only screen and (max-width: 600px) {
+    .card{
+
+    }
+}
+</style>
