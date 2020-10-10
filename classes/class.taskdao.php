@@ -17,11 +17,18 @@ Class Taskdao
       $db->getLastInsertID();
           
     }
+
+    public static function shareTaskWithUser($task_id, $user_id)
+    {
+        $db = new MySQLDatabase();
+        
+        $stmt = $db->executeQuery('INSERT INTO share_task (task_id, user_id) VALUES (?, ?)', 'ii', $task_id, $user_id);
+    }
     
     public static function getAllTaskByUserId(){
         $db = new MySqlDatabase();
         
-        $stmt = $db->executeQuery('SELECT * FROM task WHERE user_id=?', 'i', $_SESSION['user']['id']);
+        $stmt = $db->executeQuery('SELECT t.* FROM task t WHERE t.user_id = 1 OR t.id IN ( SELECT task_id FROM share_task WHERE user_id = ?)', 'i', $_SESSION['user']['id']);
         
         $stmt->bind_result($rs_id, $rs_create_date, $rs_modify_date, $rs_titel, $rs_beschreibung, $rs_start_date, $rs_end_date, $rs_category, $rs_priority, $user_id, $done);
                 

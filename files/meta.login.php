@@ -22,11 +22,6 @@ if(isset($_POST['username']) && isset($_POST['password'])) {
         Header('Location: '.$_SERVER['PHP_SELF']);
     }
     else if ($credentials == 12){
-        ?>
-<script>
-window.alert("sdf");
-</script>
- <?php
     }
     else if($credentials == 1){
         echo "aaa";

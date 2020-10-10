@@ -1,15 +1,11 @@
 :root {
     --input-padding-x: 1.5rem;
-    --input-padding-y: .75rem;
-}
-
-html{
-    background: #000000
+    --input-padding-y: 0.75rem;
 }
 
 body {
-    background: #efefef;
-//background: linear-gradient(to right, #defeff, #a3fcff);
+    background: #d6d6d6;
+    /*background: linear-gradient(to right, #defeff, #a3fcff);*/
 }
 
 .card-signin {
@@ -35,7 +31,7 @@ body {
 .form-signin .btn {
     font-size: 80%;
     border-radius: 5rem;
-    letter-spacing: .1rem;
+    letter-spacing: 0.1rem;
     font-weight: bold;
     padding: 1rem;
     transition: all 0.2s;
@@ -67,8 +63,8 @@ body {
     line-height: 1.5;
     color: #495057;
     border: 1px solid transparent;
-    border-radius: .25rem;
-    transition: all .1s ease-in-out;
+    border-radius: 0.25rem;
+    transition: all 0.1s ease-in-out;
 }
 
 .form-label-group input::-webkit-input-placeholder {
@@ -103,6 +99,7 @@ body {
     color: #777;
 }
 
+
 /* Fallback for Edge
 -------------------------------------------------- */
 
@@ -114,6 +111,7 @@ body {
         color: #777;
     }
 }
+
 
 /* Fallback for IE
 -------------------------------------------------- */

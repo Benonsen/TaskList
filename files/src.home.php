@@ -1,12 +1,11 @@
 <link href="../tasklist/css/sb-admin-2.min.css" rel="stylesheet">
 
 <!--Bootstrap datepicker scripts-->
-<link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
 
 <style>
-/*
+    /*
 *
 * ==========================================
 * CUSTOM UTIL CLASSES
@@ -14,108 +13,110 @@
 *
 */
 
-.progress {
-    width: 100px;
-    height: 100px;
-    background: none;
-    position: relative;
-}
+    .progress {
+        width: 100px;
+        height: 100px;
+        background: none;
+        position: relative;
+    }
 
-.progress::after {
-    content: "";
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 6px solid #eee;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
+    .progress::after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 6px solid #eee;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
 
-.progress>span {
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    z-index: 1;
-}
+    .progress>span {
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        z-index: 1;
+    }
 
-.progress .progress-left {
-    left: 0;
-}
+    .progress .progress-left {
+        left: 0;
+    }
 
-.progress .progress-bar {
-    width: 100%;
-    height: 100%;
-    background: none;
-    border-width: 6px;
-    border-style: solid;
-    position: absolute;
-    top: 0;
-}
+    .progress .progress-bar {
+        width: 100%;
+        height: 100%;
+        background: none;
+        border-width: 6px;
+        border-style: solid;
+        position: absolute;
+        top: 0;
+    }
 
-.progress .progress-left .progress-bar {
-    left: 100%;
-    border-top-right-radius: 80px;
-    border-bottom-right-radius: 80px;
-    border-left: 0;
-    -webkit-transform-origin: center left;
-    transform-origin: center left;
-}
+    .progress .progress-left .progress-bar {
+        left: 100%;
+        border-top-right-radius: 80px;
+        border-bottom-right-radius: 80px;
+        border-left: 0;
+        -webkit-transform-origin: center left;
+        transform-origin: center left;
+    }
 
-.progress .progress-right {
-    right: 0;
-}
+    .progress .progress-right {
+        right: 0;
+    }
 
-.progress .progress-right .progress-bar {
-    left: -100%;
-    border-top-left-radius: 80px;
-    border-bottom-left-radius: 80px;
-    border-right: 0;
-    -webkit-transform-origin: center right;
-    transform-origin: center right;
-}
+    .progress .progress-right .progress-bar {
+        left: -100%;
+        border-top-left-radius: 80px;
+        border-bottom-left-radius: 80px;
+        border-right: 0;
+        -webkit-transform-origin: center right;
+        transform-origin: center right;
+    }
 
-.progress .progress-value {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
+    .progress .progress-value {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
 
-.card {
-    text-align: center;
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 0 solid #f6f6f6;
-    border-radius: .25rem;
-}
+    .card {
+        text-align: center;
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid #f6f6f6;
+        border-radius: .25rem;
+    }
 
-.btn{
-    background-color: #167544;
-}
+    .btn{
+        background-color: #007bff;
+        margin: 2%;
+    }
 
-.card-body {
-    background-color: #889fa9;
-    color:#fff;
-}
+    .card-body {
+        background-color: #889fa9;
+        color: #fff;
+    }
 
-html {
-    /*        background: #d6d6d6;
-        color: #d6d6d6;*/
-    background-color: #252d3e;
-    background: #252d3e;
-}
+    html {
+        background-color: #d6d6d6;
+    }
+    
+    body{
+        background-color: #d6d6d6;
+    }
 </style>
 
 <?php
@@ -125,11 +126,11 @@ require_once '../tasklist/files/src.showtask.php';
 <input type="hidden" id="useridInput" value="<?php echo $_SESSION['user']['id']; ?>">
 
 <script>
-var calledittask = 1;
+    var calledittask = 1;
 </script>
 
 
-<body style="background-color:#252d3e;">
+<body>
     <!--
     <div class="card text" style="margin:4%;">
 
@@ -301,49 +302,30 @@ var calledittask = 1;
 </table>
  -->
     <script>
-    function logout() {
-        $.ajax({
-            type: 'POST',
-            url: '../tasklist/index.php?action=1',
-            data: {
-                'logout': 1
-            },
-            beforeSend: function(a) {
-                a.overrideMimeType('text/html; charset=UTF-8');
-            },
-            success: function(data) {
-                location.reload();
-            },
-            error: function() {
-                location.reload();
-            }
-        });
-    }
-    $(function() {
+        $(function() {
 
-        $(".progress").each(function() {
+            $(".progress").each(function() {
 
-            var value = $(this).attr('data-value');
-            var left = $(this).find('.progress-left .progress-bar');
-            var right = $(this).find('.progress-right .progress-bar');
+                var value = $(this).attr('data-value');
+                var left = $(this).find('.progress-left .progress-bar');
+                var right = $(this).find('.progress-right .progress-bar');
 
-            if (value > 0) {
-                if (value <= 50) {
-                    right.css('transform', 'rotate(' + percentageToDegrees(value) + 'deg)')
-                } else {
-                    right.css('transform', 'rotate(180deg)')
-                    left.css('transform', 'rotate(' + percentageToDegrees(value - 50) + 'deg)')
+                if (value > 0) {
+                    if (value <= 50) {
+                        right.css('transform', 'rotate(' + percentageToDegrees(value) + 'deg)')
+                    } else {
+                        right.css('transform', 'rotate(180deg)')
+                        left.css('transform', 'rotate(' + percentageToDegrees(value - 50) + 'deg)')
+                    }
                 }
+
+            })
+
+            function percentageToDegrees(percentage) {
+
+                return percentage / 100 * 360
+
             }
 
-        })
-
-        function percentageToDegrees(percentage) {
-
-            return percentage / 100 * 360
-
-        }
-
-    });
+        });
     </script>
-</body>
