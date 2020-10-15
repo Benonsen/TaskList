@@ -68,7 +68,7 @@ foreach ($task as $t) {
                 . "<p class='card-text'>" . $t->beschreibung . "</p>"
                 . "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#editTask' data-backdrop='static' data-keyboard='false' onclick='openeditTaskForm(" . $t->id . ")'>Edit task</button>"
                 . "<button type='button' class='btn btn-primary'> <a href='' onclick='marktaskasdone(" . $t->id . ")' class='card-link'>Mark as done</a></button>"
-                . "<button type='button' class='btn btn-primary'> <a href='' onclick='sharetask(" . $t->id . ", " . $_SESSION['user']['id'] . ")' class='card-link'>Mark as done</a></button>"
+                . "<button type='button' class='btn btn-primary'> <a href='' onclick='sharetask(" . $t->id . ", " . $_SESSION['user']['id'] . ")' class='card-link'>Mark as dasdfasdfone</a></button>"
                 . "</div>"
                 . "</div>"
                 . "</div>";
@@ -102,7 +102,7 @@ echo $htmlcontetOutput;
     }
     //openeditTaskForm(987654321);
     //console.log("sakdfj");
-    var countereditTask = 0;
+
 
     function openeditTaskForm(taskid) {
 
@@ -113,17 +113,16 @@ echo $htmlcontetOutput;
                 task_id: taskid
             },
             beforeSend: function(a) {
-                console.log(countereditTask);
-                if (countereditTask > 1) {
-                    document.getElementById('editTaskTitle').value = ' ';
+             /*    if (countereditTask > 1) {
+                    /* document.getElementById('editTaskTitle').value = ' ';
                     document.getElementById('editTaskDescripton').value = ' ';
                     document.getElementById('editTaskDate').value = '';
                     document.getElementById('EditformControlRange').value = 50;
                     var output = document.getElementById("outputPercentagePriority");
-                    output.innerHTML = "50";
+                    output.innerHTML = "50"; 
                     console.log("fertig");
-                }
-                countereditTask += 1;
+                } */
+
                 a.overrideMimeType('text/html; charset=UTF-8');
             },
             success: function(data) {

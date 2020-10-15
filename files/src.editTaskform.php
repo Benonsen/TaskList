@@ -20,6 +20,7 @@
 ?>
 
 <script>
+window.alert("1");
 // olle felder oanfoch mol clearen; schuscht stean no olte infos drinnen
 function clearEditTaskForm() {
     document.getElementById('editTaskTitle').value = ' ';
