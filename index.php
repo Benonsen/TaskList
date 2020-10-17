@@ -20,6 +20,8 @@
 <!-- Our Custom CSS -->
 <link rel="stylesheet" href="../tasklist/style/login.css">
 
+<link rel="stylesheet" href="../tasklist/public/style.css">
+
 <!-- Blau-Farbton logo 46c4f9 -->
 
 <style>

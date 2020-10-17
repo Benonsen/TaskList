@@ -1,0 +1,23 @@
+{
+    "name": "TaskList",
+    "version": "1.0.0",
+    "description": "Tasklist",
+    "main": "index.js",
+    "scripts": {
+        "build-css": "tailwindcss build src/style.css -o public/style.css"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Benonsen/TaskList.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Benonsen/TaskList/issues"
+    },
+    "homepage": "https://github.com/Benonsen/TaskList#readme",
+    "dependencies": {
+        "tailwindcss": "^1.9.4"
+    }
+}

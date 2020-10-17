@@ -3,10 +3,10 @@ require_once '../tasklist/classes/class.taskdao.php';
 require_once '../tasklist/classes/database/class.STDMySQLDatabase.php';
 
 $task = taskdao::getAllTaskByUserId();
-$randomnummer = 1;
 
 //var_dump($task);
 $warning = "";
+$card = "";
 foreach ($task as $t_done) {
     if ($t_done->end_date < time() && $t_done->done != 0) {
         $overdue_days = floor((time() - (($t_done->end_date))) / (60 * 60 * 24));
@@ -29,59 +29,28 @@ foreach ($task as $t_done) {
     }
 }
 echo $warning;
-$htmlcontetOutput = "";
-$task_counter = 0;
-$current_id = 0;
-foreach ($task as $t) {
-    if ($t->done != 1) {
-        if ($task_counter == 0) {
-            //neue zeile
-            $htmlcontetOutput .= "<div class='row'>"
-                . "<div class='col-md-3'>"
-                . "<div class='card' >"
-                . "<div class='card-body' >"
-                . "<h5 class='card-title'>" . $t->titel . "</h5>"
-                . "<p class='card-text'>" . $t->beschreibung . "</p>"
-                . "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#editTask' data-backdrop='static' data-keyboard='false' onclick='openeditTaskForm(" . $t->id . ")'>Edit task</button>"
-                . "<button type='button' class='btn btn-primary'><a href='' onclick='marktaskasdone(" . $t->id . ")' class='card-link'>Mark as done</a></button>"
-                . "</div>"
-                . "</div>"
-                . "</div>";
-        } else if ($task_counter % 3 == 0) {
-            $htmlcontetOutput .= "</div>"
-                . "<div class='row'>"
-                . "<div class='col-md-3'>"
-                . "<div class='card'>"
-                . "<div class='card-body' >"
-                . "<h5 class='card-title'>" . $t->titel . "</h5>"
-                . "<p class='card-text'>" . $t->beschreibung . "</p>"
-                . "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#editTask' data-backdrop='static' data-keyboard='false' onclick='openeditTaskForm(" . $t->id . ")'>Edit task</button>"
-                . "<button type='button' class='btn btn-primary'> <a href='' onclick='marktaskasdone(" . $t->id . ")' class='card-link'>Mark as done</a></button>"
-                . "</div>"
-                . "</div>"
-                . "</div>";
-        } else {
-            $htmlcontetOutput .= "<div class='col-md-3'>"
-                . "<div class='card'>"
-                . "<div class='card-body' >"
-                . "<h5 class='card-title'>" . $t->titel . "</h5>"
-                . "<p class='card-text'>" . $t->beschreibung . "</p>"
-                . "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#editTask' data-backdrop='static' data-keyboard='false' onclick='openeditTaskForm(" . $t->id . ")'>Edit task</button>"
-                . "<button type='button' class='btn btn-primary'> <a href='' onclick='marktaskasdone(" . $t->id . ")' class='card-link'>Mark as done</a></button>"
-                . "<button type='button' class='btn btn-primary'> <a href='' onclick='sharetask(" . $t->id . ", " . $_SESSION['user']['id'] . ")' class='card-link'>Mark as dasdfasdfone</a></button>"
-                . "</div>"
-                . "</div>"
-                . "</div>";
-        }
-        $task_counter++;
-    }
+
+foreach($task as $t){
+    $card .= ""
+    ."<div class='max-w-md py-4 px-8 shadow-lg rounded-lg my-20 inline-block bg-white md:mx-3 sm:mx-0 w-full'>"
+
+    . "<div class='flex justify-center md:justify-end -mt-16'>"
+    ."        <img class='w-20 h-20 object-cover rounded-full border-2 border-indigo-500' src='https://github.com/benonsen.png'>"
+    ."    </div>"
+    ."    <div>"
+    ."        <h2 class='text-gray-800 text-3xl font-semibold'> ". $t->titel."</h2>"
+    ."        <p class='mt-2 text-gray-600'>".$t->beschreibung."</p>"
+    ."    </div>"
+    ."    <div class='flex justify-end mt-4'>"
+    ."        <a href='#' class='text-xl font-medium text-indigo-500'>John Doe</a>"
+    ."    </div>"
+    ."    </div>";
 }
-echo $htmlcontetOutput;
+$card .= "</div>";
+echo $card;
 ?>
-<div id="testinputtaskid">
-</div>
 <button onclick="logout()" class="btn btn-primary">Abmelden</button>
-    <script>
+<script>
     function logout() {
         $.ajax({
             type: 'POST',
@@ -113,15 +82,15 @@ echo $htmlcontetOutput;
                 task_id: taskid
             },
             beforeSend: function(a) {
-             /*    if (countereditTask > 1) {
-                    /* document.getElementById('editTaskTitle').value = ' ';
-                    document.getElementById('editTaskDescripton').value = ' ';
-                    document.getElementById('editTaskDate').value = '';
-                    document.getElementById('EditformControlRange').value = 50;
-                    var output = document.getElementById("outputPercentagePriority");
-                    output.innerHTML = "50"; 
-                    console.log("fertig");
-                } */
+                /*    if (countereditTask > 1) {
+                       /* document.getElementById('editTaskTitle').value = ' ';
+                       document.getElementById('editTaskDescripton').value = ' ';
+                       document.getElementById('editTaskDate').value = '';
+                       document.getElementById('EditformControlRange').value = 50;
+                       var output = document.getElementById("outputPercentagePriority");
+                       output.innerHTML = "50"; 
+                       console.log("fertig");
+                   } */
 
                 a.overrideMimeType('text/html; charset=UTF-8');
             },
@@ -167,6 +136,6 @@ echo $htmlcontetOutput;
     a {
         color: #ffffff;
     }
-    
 
-<style>
+
+    <style>
