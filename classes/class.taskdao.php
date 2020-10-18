@@ -40,4 +40,9 @@ Class Taskdao
         
         return $result;
     }
+
+    public static function markTaskasDone($task_id){
+        $db = new MySQLDatabase();
+        $stmt = $db->executeQuery('UPDATE task SET done = 1 WHERE id = ?', 'i', $task_id);
+    }
 }

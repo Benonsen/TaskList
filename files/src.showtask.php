@@ -8,7 +8,7 @@ $task = taskdao::getAllTaskByUserId();
 $warning = "";
 $card = "";
 foreach ($task as $t_done) {
-    if ($t_done->end_date < time() && $t_done->done != 0) {
+    if ($t_done->end_date < time() && $t_done->done == 0) {
         $overdue_days = floor((time() - (($t_done->end_date))) / (60 * 60 * 24));
         if ($overdue_days >= 2) {
             $overdue_days .= " days";
@@ -23,7 +23,7 @@ foreach ($task as $t_done) {
                 $overdue_days .= " hour";
             }
         }
-        $warning .= "<div class='alert alert-danger' role='alert' onclick=testnotification($t_done->id)>"
+        $warning .= "<div class='alert alert-danger' role='alert' onclick=markasdone($t_done->id)>"
             . "Your task: $t_done->titel is overdue by $overdue_days!"
             . "</div>";
     }
@@ -31,6 +31,7 @@ foreach ($task as $t_done) {
 echo $warning;
 
 foreach($task as $t){
+    if($t->done == 0){
     $card .= ""
     ."<div class='max-w-md py-4 px-8 shadow-lg rounded-lg my-20 inline-block bg-white md:mx-3 sm:mx-0 w-full'>"
 
@@ -42,15 +43,37 @@ foreach($task as $t){
     ."        <p class='mt-2 text-gray-600'>".$t->beschreibung."</p>"
     ."    </div>"
     ."    <div class='flex justify-end mt-4'>"
-    ."        <a href='#' class='text-xl font-medium text-indigo-500'>John Doe</a>"
+    ."        <button class='text-xl font-medium text-indigo-500' onclick='markasdone(". $t->id .")'>Mark as done</button>"
     ."    </div>"
     ."    </div>";
+}
 }
 $card .= "</div>";
 echo $card;
 ?>
 <button onclick="logout()" class="btn btn-primary">Abmelden</button>
 <script>
+    function markasdone(task_id){
+        $.ajax({
+            type: 'POST',
+            url: '../tasklist/index.php?action=3003',
+            data: {
+                'task_id_done': task_id
+            },
+            beforeSend: function(a) {
+                a.overrideMimeType('text/html; charset=UTF-8');
+            },
+            success: function(data) {
+                console.log(task_id + "juhu");
+                location.reload();
+            },
+            error: function() {
+                location.reload();
+            }
+        });
+    }
+
+
     function logout() {
         $.ajax({
             type: 'POST',
@@ -138,4 +161,4 @@ echo $card;
     }
 
 
-    <style>
+    </style>

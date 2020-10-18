@@ -66,6 +66,10 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             case 3002:
                 require_once '../TaskList/files/meta.shareTask.php';
                 break;
+            
+            case 3003:
+                require_once '../TaskList/files/meta.markTaskasDone.php';
+                break;
                 //            case 3000:
                 //                require_once '../tasklist/files/';
         }
