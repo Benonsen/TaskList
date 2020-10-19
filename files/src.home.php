@@ -119,10 +119,7 @@
     }
 </style>
 
-<?php
-require_once '../tasklist/files/src.createTaskFrom.php';
-require_once '../tasklist/files/src.showtask.php';
-?>
+
 <input type="hidden" id="useridInput" value="<?php echo $_SESSION['user']['id']; ?>">
 
 <script>
@@ -163,8 +160,9 @@ require_once '../tasklist/files/src.showtask.php';
                 </li>
             </ul>
         </div>
+        
     </nav>
-
+    <div class="my-2 w-full md:my-24" id="alskdfj"></div>
 
     <script>
         //Javascript to toggle the menu
@@ -172,3 +170,9 @@ require_once '../tasklist/files/src.showtask.php';
             document.getElementById("nav-content").classList.toggle("hidden");
         }
     </script>
+
+
+<?php
+require_once '../tasklist/files/src.createTaskFrom.php';
+require_once '../tasklist/files/src.showtask.php';
+?>

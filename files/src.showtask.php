@@ -6,7 +6,7 @@ $task = taskdao::getAllTaskByUserId();
 
 //var_dump($task);
 $warning = "";
-$card = "";
+$card = "<div class ='my-18'></div>";
 foreach ($task as $t_done) {
     if ($t_done->end_date < time() && $t_done->done == 0) {
         $overdue_days = floor((time() - (($t_done->end_date))) / (60 * 60 * 24));
@@ -30,22 +30,36 @@ foreach ($task as $t_done) {
 }
 echo $warning;
 
-foreach($task as $t){
-    if($t->done == 0){
-    $card .= ""
-    ."<div class='max-w-md py-4 px-8 shadow-lg rounded-lg my-48 inline-block bg-white md:mx-3 sm:mx-0 w-full '>"
 
-    . "<div class='flex justify-center md:justify-end -mt-16'>"
-    ."        <img class='w-20 h-20 object-cover rounded-full border-2 border-indigo-500' src='https://github.com/benonsen.png'>"
-    ."    </div>"
-    ."    <div>"
-    ."        <h2 class='text-gray-800 text-3xl font-semibold'> ". $t->titel."</h2>"
-    ."        <p class='mt-2 text-gray-600'>".$t->beschreibung."</p>"
-    ."    </div>"
-    ."    <div class='flex justify-end mt-4'>"
-    ."        <button class='text-xl font-medium text-indigo-500' onclick='markasdone(". $t->id .")'>Mark as done</button>"
-    ."    </div>"
-    ."    </div>";
+foreach($task as $t){
+    
+    if($t->done == 0){
+        $output = $time_left . " days";
+        if ($time_left < 1){
+            $time_left = floor((($t->end_date) - (time())) / (60 * 60));
+            $output = $time_left . " hour(s)";
+        }
+        $time_left = floor((($t->end_date) - (time())) / (60 * 60 * 24));
+
+        $card .= ""
+        ."<div class='max-w-md py-4 px-8 shadow-lg rounded-lg my-8 inline-block bg-white md:mx-3 sm:mx-0 w-full '>"
+
+        . "<div class='flex justify-center md:justify-end -mt-16'>"
+        ."        <img class='w-20 h-20 object-cover rounded-full border-2 border-indigo-500' src='https://github.com/benonsen.png'>"
+        ."    </div>"
+        ."    <div>"
+        ."        <h2 class='text-gray-800 text-3xl font-semibold'> ". $t->titel."</h2>"
+        ."        <p class='mt-2 text-gray-600'>".$t->beschreibung."</p>"
+        ."<div class='flex justify mt-4 '>"
+        . "<button class='text-xl font-medium text-indigo-500' onclick='markasdone(". $t->id .")'>Time left: ". $output."</button>"
+        ."    </div>"
+        ."    <div class='absolute right-0'>"
+
+        ."        <button class='text-xl font-medium text-indigo-500' onclick='markasdone(". $t->id .")'>Mark as done</button>"
+        ."    </div>"
+        ."    </div>"
+       
+        ."    </div>";
 }
 }
 $card .= "</div>";
