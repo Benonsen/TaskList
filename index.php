@@ -30,6 +30,7 @@
     }
 </style>
 <?php
+
 require_once '../tasklist/classes/class.user.php';
 require_once '../tasklist/classes/class.userdao.php';
 require_once '../tasklist/classes/database/class.STDMySQLDatabase.php';

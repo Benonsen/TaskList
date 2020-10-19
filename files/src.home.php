@@ -100,7 +100,7 @@
         border-radius: .25rem;
     }
 
-    .btn{
+    .btn {
         background-color: #007bff;
         margin: 2%;
     }
@@ -113,8 +113,8 @@
     html {
         background-color: #d6d6d6;
     }
-    
-    body{
+
+    body {
         background-color: #d6d6d6;
     }
 </style>
@@ -131,201 +131,44 @@ require_once '../tasklist/files/src.showtask.php';
 
 
 <body>
-    <!--
-    <div class="card text" style="margin:4%;">
-
-        <div class="card-body">
-            <h5 class="card-title">Task 1</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.
-            <div class="rigth">
-                <div class="progress mx-auto" data-value='25'>
-                <span class="progress-left">
-                            <span class="progress-bar border-danger"></span>
-              </span>
-                <span class="progress-right">
-                            <span class="progress-bar border-danger"></span>
-              </span>
-            <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                <div class="h2 font-weight-bold">25%</div>
-            </div>
-        </div>
-        </div>
-            </p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-        <div class="card-footer text-muted">
-            2 days ago
-        </div>
-    </div>
-
-    <div class="card-body">
-        <h4 class="card-title mb-4">Upcoming</h4>
-        <div class="table-responsive">
-            <table class="table table-nowrap table-centered mb-0">
-                <tbody>
-                <tr>
-                    <td style="width: 60px;">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1"></label>
-                        </div>
-                    </td>
-                    <td>
-                        <h5 class="text-truncate font-size-14 m-0"><a href="#" class="text-dark">Create a Skote Dashboard UI</a></h5>
-                    </td>
-                    <td>
-                        <div class="team">
-                            <a href="javascript: void(0);" class="team-member">
-                                <img src="../tasklist/images/users-solid.svg" class="rounded-circle avatar-xs m-1" alt="">
-                            </a>
-
-                            <a href="javascript: void(0);" class="team-member">
-                                <img src="../tasklist/images/users-solid.svg" class="rounded-circle avatar-xs m-1" alt="">
-                            </a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="text-center">
-                            <span class="badge badge-pill badge-soft-secondary font-size-11">Waiting</span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck2" checked="">
-                            <label class="custom-control-label" for="customCheck2"></label>
-                        </div>
-                    </td>
-                    <td>
-                        <h5 class="text-truncate font-size-14 m-0"><a href="#" class="text-dark">Create a New Landing UI</a></h5>
-                    </td>
-                    <td>
-                        <div class="team">
-                            <a href="javascript: void(0);" class="team-member d-inline-block">
-                                <img src="../tasklist/images/users-solid.svg" class="rounded-circle avatar-xs m-1" alt="">
-                            </a>
-
-                            <a href="javascript: void(0);" class="team-member d-inline-block">
-                                <img src="../tasklist/images/users-solid.svg" class="rounded-circle avatar-xs m-1" alt="">
-                            </a>
-
-                            <a href="javascript: void(0);" class="team-member d-inline-block">
-                                <div class="avatar-xs">
-                                                                            <span class="avatar-title rounded-circle bg-soft-primary text-primary">
-                                                                                3 +
-                                                                            </span>
-                                </div>
-                            </a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="text-center">
-                            <div class="progress mx-auto" data-value='25'>
-                <span class="progress-left">
-                            <span class="progress-bar border-danger"></span>
-              </span>
-                                <span class="progress-right">
-                            <span class="progress-bar border-danger"></span>
-              </span>
-                                <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                    <div class="h2 font-weight-bold">25%</div>
-                                </div>
-                           <span class="badge badge-pill badge-soft-primary font-size-11">Approved</span>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck3">
-                            <label class="custom-control-label" for="customCheck3"></label>
-                        </div>
-                    </td>
-                    <td>
-                        <h5 class="text-truncate font-size-14 m-0"><a href="#" class="text-dark">Create a Skote Logo</a></h5>
-                    </td>
-                    <td>
-                        <div class="team">
-                            <a href="javascript: void(0);" class="team-member d-inline-block">
-                                <div class="avatar-xs">
-                                                                            <span class="avatar-title rounded-circle bg-soft-primary text-primary">
-                                                                                F
-                                                                            </span>
-                                </div>
-                            </a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="text-center">
-                            <span class="badge badge-pill badge-soft-secondary font-size-11">Waiting</span>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+    <nav class="flex items-center justify-between flex-wrap bg-gray-800 p-6 fixed w-full z-10 top-0">
+        <div class="flex items-center flex-shrink-0 text-white mr-6">
+            <a class="text-white no-underline hover:text-white hover:no-underline" href="#">
+                <span class="text-2xl pl-2"><i class="em em-grinning"></i>tasklist</span>
+            </a>
         </div>
 
-<table class="table table-hover">
- 
-  <tbody>
-    <tr>
-        <th rowspan="2" scope="row">
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                <label class="custom-control-label" for="defaultUnchecked"></label>
-            </div>
-            
-        </th>
-        <td><b>Titel</b></td>
-      <td>Edit</td>
+        <div class="block lg:hidden">
+            <button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-white hover:border-white">
+                <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <title>Menu</title>
+                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+                </svg>
+            </button>
+        </div>
 
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-      <td>@fat</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry the Bird</td>
-      <td>Larry the Bird</td>
-      <td>@twitter</td>
-      <td>@twitter</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
- -->
+        <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0" id="nav-content">
+            <ul class="list-reset lg:flex justify-end flex-1 items-center">
+                <li class="mr-3">
+                    <a class="inline-block py-2 px-4 text-white no-underline" href="#">Task</a>
+                </li>
+                <li class="mr-3">
+                    <a class="inline-block py-2 px-4 text-white no-underline" data-toggle="modal" data-target="#exampleModalCenter" href="">Create Task</a>
+                </li>
+                <li class="mr-3">
+                    <a class="inline-block text-white no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="#">user</a>
+                </li>
+                <li class="mr-3">
+                    <a class="inline-block text-white no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="#" onclick="logout()">log out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
     <script>
-        $(function() {
-
-            $(".progress").each(function() {
-
-                var value = $(this).attr('data-value');
-                var left = $(this).find('.progress-left .progress-bar');
-                var right = $(this).find('.progress-right .progress-bar');
-
-                if (value > 0) {
-                    if (value <= 50) {
-                        right.css('transform', 'rotate(' + percentageToDegrees(value) + 'deg)')
-                    } else {
-                        right.css('transform', 'rotate(180deg)')
-                        left.css('transform', 'rotate(' + percentageToDegrees(value - 50) + 'deg)')
-                    }
-                }
-
-            })
-
-            function percentageToDegrees(percentage) {
-
-                return percentage / 100 * 360
-
-            }
-
-        });
+        //Javascript to toggle the menu
+        document.getElementById('nav-toggle').onclick = function() {
+            document.getElementById("nav-content").classList.toggle("hidden");
+        }
     </script>
