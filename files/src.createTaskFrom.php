@@ -117,17 +117,8 @@ function createTask() {
     var prioritaet = document.getElementById('formControlRange').value;
     var user_id = document.getElementById('useridInput').value;
 
-
-    console.log(titel);
-    console.log(beschreibung);
-    console.log(datum);
-    console.log(prioritaet);
-    console.log(user_id);
-
-
     if (!!titel && !!beschreibung && !!datum && !!prioritaet) {
         //kein feld isch leer; daten koennen in zur db gschicket werden
-        //ajax
         $.ajax({
             type: 'POST',
             url: '../tasklist/index.php?action=2500',
@@ -142,9 +133,8 @@ function createTask() {
                 a.overrideMimeType('text/html; charset=UTF-8');
             },
             success: function(data) {
-                window.alert("data will be transmitted");
                 clearFormCreateTask();
-
+                location.reload();
             },
             error: function() {
                 location.reload();

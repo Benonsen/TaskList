@@ -1,10 +1,11 @@
 <?php
 require_once '../tasklist/classes/class.taskdao.php';
 require_once '../tasklist/classes/database/class.STDMySQLDatabase.php';
+require '../tasklist/files/src.editTaskform.php';
+
 
 $task = taskdao::getAllTaskByUserId();
 
-//var_dump($task);
 $warning = "";
 $card = "<div class ='my-18'></div>";
 foreach ($task as $t_done) {
@@ -16,7 +17,7 @@ foreach ($task as $t_done) {
             $overdue_days .= " day";
         }
         if ($overdue_days == 0) {
-            $overdue_days = floor(date('h', time()) - date('h', $t_done->end_date));
+            $overdue_days = floor((time() - $t_done->end_date) / (60*60));
             if ($overdue_days >= 2) {
                 $overdue_days .= " hours";
             } else {
@@ -30,16 +31,14 @@ foreach ($task as $t_done) {
 }
 echo $warning;
 
-
 foreach($task as $t){
+    $time_left = floor((($t->end_date) - (time())) / (60 * 60 * 24));
     
-    if($t->done == 0){
-        $output = $time_left . " days";
-        if ($time_left < 1){
-            $time_left = floor((($t->end_date) - (time())) / (60 * 60));
-            $output = $time_left . " hour(s)";
+    if($t->done == 0 && time() < $t->end_date){
+        $output = "Time left: " . $time_left . " days";
+        if ($time_left < 1 && time() < $t->end_date){
+            $output = "due today";
         }
-        $time_left = floor((($t->end_date) - (time())) / (60 * 60 * 24));
 
         $card .= ""
         ."<div class='max-w-md py-4 px-8 shadow-lg rounded-lg my-8 inline-block bg-white md:mx-3 sm:mx-0 w-full '>"
@@ -51,11 +50,12 @@ foreach($task as $t){
         ."        <h2 class='text-gray-800 text-3xl font-semibold'> ". $t->titel."</h2>"
         ."        <p class='mt-2 text-gray-600'>".$t->beschreibung."</p>"
         ."<div class='flex justify mt-4 '>"
-        . "<button class='text-xl font-medium text-indigo-500' onclick='markasdone(". $t->id .")'>Time left: ". $output."</button>"
+        . "<button class='text-xl font-medium text-indigo-500' onclick='markasdone(". $t->id .")'>". $output."</button>"
+        . "<button class='text-xl font-medium text-indigo-500' onclick='openeditTaskForm(". $t->id .")' data-toggle='modal' data-target='#editTask'>". $output."</button>"
+
         ."    </div>"
         ."    <div class='absolute right-0'>"
 
-        ."        <button class='text-xl font-medium text-indigo-500' onclick='markasdone(". $t->id .")'>Mark as done</button>"
         ."    </div>"
         ."    </div>"
        
@@ -65,6 +65,9 @@ foreach($task as $t){
 $card .= "</div>";
 echo $card;
 ?>
+<div id='testinputtaskid'>
+
+</div>
 <button onclick="logout()" class="btn btn-primary">Abmelden</button>
 <script>
     function markasdone(task_id){
@@ -114,25 +117,15 @@ echo $card;
 
         $.ajax({
             type: 'POST',
-            url: '../tasklist/index.php?action=3001',
+            url: '../tasklist/index.php?action=4000',
             data: {
                 task_id: taskid
             },
             beforeSend: function(a) {
-                /*    if (countereditTask > 1) {
-                       /* document.getElementById('editTaskTitle').value = ' ';
-                       document.getElementById('editTaskDescripton').value = ' ';
-                       document.getElementById('editTaskDate').value = '';
-                       document.getElementById('EditformControlRange').value = 50;
-                       var output = document.getElementById("outputPercentagePriority");
-                       output.innerHTML = "50"; 
-                       console.log("fertig");
-                   } */
-
                 a.overrideMimeType('text/html; charset=UTF-8');
             },
             success: function(data) {
-
+                console.log("success");
                 $('#testinputtaskid').empty();
                 $('#testinputtaskid').append(data);
             },

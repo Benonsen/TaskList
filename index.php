@@ -61,7 +61,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                 break;
 
             case 3001:
-                require_once '../tasklist/files/src.editTaskform.php';
+                require '../tasklist/files/src.editTaskform.php';
                 break;
 
             case 3002:
@@ -73,7 +73,9 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                 break;
                 //            case 3000:
                 //                require_once '../tasklist/files/';
-        }
+            case 4000:
+                require '../TaskList/files/meta.editShowTask.php';
+            }
     } else {
         require_once '../tasklist/files/src.home.php';
     }

@@ -45,4 +45,16 @@ Class Taskdao
         $db = new MySQLDatabase();
         $stmt = $db->executeQuery('UPDATE task SET done = 1 WHERE id = ?', 'i', $task_id);
     }
+
+    public static function getDataForTaskEdit($task_id){
+        $db = new MySQLDatabase();
+        $stmt = $db->executeQuery('SELECT * FROM task where id = ?', 'i', $task_id);
+        $stmt->bind_result($rs_id, $rs_create_date, $rs_modify_date, $rs_titel, $rs_beschreibung, $rs_start_date, $rs_end_date, $rs_category, $rs_priority, $user_id, $done);
+
+        if($stmt->fetch()){
+            $result[] = new Task($rs_id, $rs_create_date, $rs_modify_date, $rs_titel, $rs_beschreibung, $rs_start_date, $rs_end_date, $rs_category, $rs_priority, $user_id, $done);
+            return $result;
+        }
+        return 0;
+    }
 }

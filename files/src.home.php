@@ -144,8 +144,8 @@
             </button>
         </div>
 
-        <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0" id="nav-content">
-            <ul class="list-reset lg:flex justify-end flex-1 items-center">
+        <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0 align-middle text-center" id="nav-content">
+            <ul class="list-reset lg:flex justify-end flex-1 items-center ">
                 <li class="mr-3">
                     <a class="inline-block py-2 px-4 text-white no-underline" href="#">Task</a>
                 </li>
@@ -162,7 +162,7 @@
         </div>
         
     </nav>
-    <div class="my-2 w-full md:my-24" id="alskdfj"></div>
+    <div class="my-2 sm:my-24" id="alskdfj"></div>
 
     <script>
         //Javascript to toggle the menu
