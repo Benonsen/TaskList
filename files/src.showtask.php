@@ -35,7 +35,8 @@ foreach($task as $t){
     $time_left = floor((($t->end_date) - (time())) / (60 * 60 * 24));
     
     if($t->done == 0 && time() < $t->end_date){
-        $output = "Time left: " . $time_left . " days";
+        $time_left ++;
+        $output = "Time left: " . $time_left  . " days";
         if ($time_left < 1 && time() < $t->end_date){
             $output = "due today";
         }
@@ -51,7 +52,7 @@ foreach($task as $t){
         ."        <p class='mt-2 text-gray-600'>".$t->beschreibung."</p>"
         ."<div class='flex justify mt-4 '>"
         . "<button class='text-xl font-medium text-indigo-500' onclick='markasdone(". $t->id .")'>". $output."</button>"
-        . "<button class='text-xl font-medium text-indigo-500' onclick='openeditTaskForm(". $t->id .")' data-toggle='modal' data-target='#editTask'>". $output."</button>"
+        . "<button class='text-xl font-medium text-indigo-500' onclick='openeditTaskForm(". $t->id .")' >". $output."</button>"
 
         ."    </div>"
         ."    <div class='absolute right-0'>"
