@@ -65,6 +65,7 @@ foreach($task as $t){
 }
 $card .= "</div>";
 echo $card;
+
 ?>
 <div id='testinputtaskid'>
 
