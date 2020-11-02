@@ -2,77 +2,81 @@
 require_once '../tasklist/classes/class.taskdao.php';
 require_once '../tasklist/classes/database/class.STDMySQLDatabase.php';
 require '../tasklist/files/src.editTaskform.php';
+require_once '../TaskList/classes/class.userdao.php';
 
-
+$user = userdao::getUserInfo($_SESSION['user']['id']);
 $task = taskdao::getAllTaskByUserId();
+$img = "";
+$img = base64_encode($user->profile_picture);
 
 $warning = "";
-$card = "<div class ='my-18'></div>";
-foreach ($task as $t_done) {
-    if ($t_done->end_date < time() && $t_done->done == 0) {
-        $overdue_days = floor((time() - (($t_done->end_date))) / (60 * 60 * 24));
-        if ($overdue_days >= 2) {
-            $overdue_days .= " days";
-        } else {
-            $overdue_days .= " day";
-        }
-        if ($overdue_days == 0) {
-            $overdue_days = floor((time() - $t_done->end_date) / (60*60));
+?> <div class='my-18'></div> 
+<?php
+    foreach ($task as $t_done) {
+        if ($t_done->end_date < time() && $t_done->done == 0) {
+            $overdue_days = floor((time() - (($t_done->end_date))) / (60 * 60 * 24));
             if ($overdue_days >= 2) {
-                $overdue_days .= " hours";
+                $overdue_days .= " days";
             } else {
-                $overdue_days .= " hour";
+                $overdue_days .= " day";
             }
+            if ($overdue_days == 0) {
+                $overdue_days = floor((time() - $t_done->end_date) / (60 * 60));
+                if ($overdue_days >= 2) {
+                    $overdue_days .= " hours";
+                } else {
+                    $overdue_days .= " hour";
+                }
+            }
+            $warning .= "<div class='alert alert-danger' role='alert' onclick=markasdone($t_done->id)>"
+                . "Your task: $t_done->titel is overdue by $overdue_days!"
+                . "</div>";
         }
-        $warning .= "<div class='alert alert-danger' role='alert' onclick=markasdone($t_done->id)>"
-            . "Your task: $t_done->titel is overdue by $overdue_days!"
-            . "</div>";
     }
-}
-echo $warning;
+    echo $warning;
 
-foreach($task as $t){
-    $time_left = floor((($t->end_date) - (time())) / (60 * 60 * 24));
-    
-    if($t->done == 0 && time() < $t->end_date){
-        $time_left ++;
-        $output = "Time left: " . $time_left  . " days";
-        if ($time_left < 1 && time() < $t->end_date){
-            $output = "due today";
+    foreach ($task as $t) {
+        $time_left = floor((($t->end_date) - (time())) / (60 * 60 * 24));
+
+        if ($t->done == 0 && time() < $t->end_date) {
+            $time_left++;
+            $output = "Time left: " . $time_left  . " days";
+            if ($time_left < 1 && time() < $t->end_date) {
+                $output = "due today";
+            }
+
+    ?>
+        <div class='max-w-md py-4 px-8 shadow-lg rounded-lg my-8 inline-block bg-white md:mx-3 sm:mx-0 w-full '>"
+
+            <div class='flex justify-center md:justify-end -mt-16'>
+                <img class='w-20 h-20 object-cover rounded-full border-2 border-indigo-500' src="data:image/jpeg;base64,<?php echo $img ?>">
+
+            </div>
+            <div>
+                <h2 class='text-gray-800 text-3xl font-semibold'> <?php echo $t->titel; ?></h2>
+                <p class='mt-2 text-gray-600'><?php echo $t->beschreibung; ?></p>
+                <div class='flex justify mt-4 '>
+                    <button class='text-xl font-medium text-indigo-500' onclick='markasdone(<?php echo $t->id; ?>)'><?php echo $output; ?></button>
+                    <button class='text-xl font-medium text-indigo-500' onclick='openeditTaskForm(<?php echo $t->id; ?>)'> <?php echo $output; ?></button>
+
+                </div>
+                <div class='absolute right-0'>
+
+                </div>
+            </div>
+
+        </div><?php
         }
+    }
 
-        $card .= ""
-        ."<div class='max-w-md py-4 px-8 shadow-lg rounded-lg my-8 inline-block bg-white md:mx-3 sm:mx-0 w-full '>"
-
-        . "<div class='flex justify-center md:justify-end -mt-16'>"
-        ."        <img class='w-20 h-20 object-cover rounded-full border-2 border-indigo-500' src='https://github.com/benonsen.png'>"
-        ."    </div>"
-        ."    <div>"
-        ."        <h2 class='text-gray-800 text-3xl font-semibold'> ". $t->titel."</h2>"
-        ."        <p class='mt-2 text-gray-600'>".$t->beschreibung."</p>"
-        ."<div class='flex justify mt-4 '>"
-        . "<button class='text-xl font-medium text-indigo-500' onclick='markasdone(". $t->id .")'>". $output."</button>"
-        . "<button class='text-xl font-medium text-indigo-500' onclick='openeditTaskForm(". $t->id .")' >". $output."</button>"
-
-        ."    </div>"
-        ."    <div class='absolute right-0'>"
-
-        ."    </div>"
-        ."    </div>"
-       
-        ."    </div>";
-}
-}
-$card .= "</div>";
-echo $card;
-
-?>
+                ?> </div>
 <div id='testinputtaskid'>
 
 </div>
+
 <button onclick="logout()" class="btn btn-primary">Abmelden</button>
 <script>
-    function markasdone(task_id){
+    function markasdone(task_id) {
         $.ajax({
             type: 'POST',
             url: '../tasklist/index.php?action=3003',
@@ -168,6 +172,4 @@ echo $card;
     a {
         color: #ffffff;
     }
-
-
-    </style>
+</style>

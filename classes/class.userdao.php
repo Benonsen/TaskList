@@ -81,9 +81,20 @@ Class UserDAO
             echo "<input type=hidden id=usernameavailability value=0>";
         }
         
+    }
 
+    public static function getUserInfo($id){
+        $db = new MySQLDatabase();
+
+        $stmt = $db->executeQuery('SELECT id, username, password, email, ismaster, create_date, last_login, profile_picture from user WHERE id = ?', 'i', $id);
+        $stmt->bind_result($rs_id, $rs_username, $rs_password, $rs_email, $rs_ismaster, $rs_create_date, $rs_last_login, $rs_profile_picture);
+
+        if($stmt->fetch()){
+            return new User($rs_id,$rs_username, $rs_password, $rs_email, $rs_ismaster, $rs_create_date, $rs_last_login, $rs_profile_picture);
+
+        }
         
-        
+
     }
 }
 ?>

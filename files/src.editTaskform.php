@@ -2,9 +2,10 @@
 
 <?php
 class EditTask {
-public static function OutputDataEditTask($task_id) {
+public function OutputDataEditTask($task_id) {
     require_once '../tasklist/classes/class.taskdao.php';
     require_once '../tasklist/classes/database/class.STDMySQLDatabase.php';
+    $outputdata = "";
     if(isset($task_id)){
         echo $task_id;
         $outputdata = Taskdao::getDataForTaskEdit($task_id);
