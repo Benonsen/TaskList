@@ -46,7 +46,7 @@ $warning = "";
             }
 
     ?>
-        <div class='max-w-md py-4 px-8 shadow-lg rounded-lg my-8 inline-block bg-white md:mx-3 sm:mx-0 w-full '>"
+        <div class='max-w-md py-4 px-8 shadow-lg rounded-lg my-8 inline-block bg-white md:mx-3 sm:mx-0 w-full '>
 
             <div class='flex justify-center md:justify-end -mt-16'>
                 <img class='w-20 h-20 object-cover rounded-full border-2 border-indigo-500' src="data:image/jpeg;base64,<?php echo $img ?>">
@@ -70,6 +70,7 @@ $warning = "";
     }
 
                 ?> </div>
+<button class="w-12 h-12 bg-blue-200" onclick="loadUserSettings()">Load User</button>
 <div id='testinputtaskid'>
 
 </div>
@@ -95,7 +96,25 @@ $warning = "";
             }
         });
     }
-
+    
+    function loadUserSettings(){
+        $.ajax({
+            type: 'POST',
+            url: '../tasklist/index.php?action=5000',
+            beforeSend: function(a){
+                a.overrideMimeType('text/html; charset:UTF-8');
+            },
+            success: function(data){
+                $('#testinputtaskid').empty();
+                $('#testinputtaskid').append(data);
+                console.log('success; loading user profile');
+                //location.reload();
+            }, 
+            error: function(){
+                window.alert("error ajax");
+            }
+        });
+    }
 
     function logout() {
         $.ajax({

@@ -75,6 +75,11 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                 //                require_once '../tasklist/files/';
             case 4000:
                 require '../TaskList/files/meta.editShowTask.php';
+                break;
+            
+            case 5000:
+                require_once '../TaskList/files/src.editprofile.php';
+            break;
             }
     } else {
         require_once '../tasklist/files/src.home.php';

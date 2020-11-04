@@ -61,7 +61,6 @@ function clearEditTaskForm() {
     ."                  <input type='checkbox' class='custom-control-input' id='customSwitch1'>"
     ."                  <label class='custom-control-label' for='customSwitch1'>Toggle this switch element</label>"
     ."              </div>"
-    .""
     ."                <button class='btn btn-lg btn-primary btn-block text-uppercase' type='button' style='margin-top:5%;'"
     ."                  data-dismiss='modal' onclick='editTask()'>Save changes</button>"
     ."              <button class='btn btn-lg btn-primary btn-block text-uppercase' type='button' style='margin-top:3%;'"
